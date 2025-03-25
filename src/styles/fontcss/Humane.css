@@ -1,0 +1,19 @@
+/* Webfont: Humane-Black */@font-face {
+    font-family: 'HumaneBlack';
+  /* IE9 Compat Modes */
+    src: url('../Title-css/Humane-Black.woff') format('woff'), /* Modern Browsers */
+         url('../Title-css/Humane-Black.woff2') format('woff2'), /* Modern Browsers */
+         url('../Title-css/Humane-Black.ttf') format('truetype'); /* Safari, Android, iOS */
+             font-style: normal;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+ /* Webfont: Humane-SemiBold */@font-face {
+    font-family: 'HumaneSemBd';
+  src:   url('../Title-css/Humane-SemiBold.woff') format('woff'), /* Modern Browsers */
+         url('../Title-css/Humane-SemiBold.woff2') format('woff2'), /* Modern Browsers */
+         url('../Title-css/Humane-SemiBold.ttf') format('truetype'); /* Safari, Android, iOS */
+             font-style: normal;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
