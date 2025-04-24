@@ -40,11 +40,6 @@ export default async function PageLayout(props: { children: React.ReactNode }) {
       )}
       {props.children}
       <Footer />
-      <div className="fixed top-0 left-0 w-[100dvw] h-[100dvh] -z-30 flex justify-center items-center">
-        <p className="logo-font text-[30vh] sm:text-[25vw] text-[#3c36328f]">
-          0/
-        </p>
-      </div>
     </>
   )
 }

@@ -14,7 +14,7 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
           return (
             <div
               key={image.id}
-              className="relative aspect-[9/12] w-full overflow-hidden"
+              className="relative h-[80vh] w-full overflow-hidden"
               id={image.id}
             >
               {!!image.url && (
@@ -26,8 +26,8 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
                   fill
                   sizes="(max-width: 476px) 180px, (max-width: 568px) 260px, (max-width: 792px) 380px, 500px"
                   style={{
-                    objectFit: "cover",
-                    objectPosition:"center"
+                    objectFit: "contain",
+                    objectPosition: "center",
                   }}
                 />
               )}
