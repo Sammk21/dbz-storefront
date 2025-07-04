@@ -8,7 +8,7 @@ const slides = [
   { text: "Limited Stocks - " },
 ]
 
-const InfiniteText = () => {
+export const InfiniteText = () => {
   const containerRef = useRef(null)
   const firstScrollerRef = useRef(null)
   const secondScrollerRef = useRef(null)
@@ -81,5 +81,3 @@ const InfiniteText = () => {
     </div>
   )
 }
-
-export default InfiniteText

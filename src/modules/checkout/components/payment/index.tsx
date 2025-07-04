@@ -1,17 +1,21 @@
 "use client"
 
 import { RadioGroup } from "@headlessui/react"
-import { isRazorpay, paymentInfoMap } from "@lib/constants"
+import {
+  isRazorpay,
+  isStripe as isStripeFunc,
+  paymentInfoMap,
+} from "@lib/constants"
 import { initiatePaymentSession } from "@lib/data/cart"
 import { CheckCircleSolid, CreditCard } from "@medusajs/icons"
 import { Button, Container, Heading, Text, clx } from "@medusajs/ui"
 import ErrorMessage from "@modules/checkout/components/error-message"
-import PaymentContainer from "@modules/checkout/components/payment-container"
+import PaymentContainer, {
+  StripeCardContainer,
+} from "@modules/checkout/components/payment-container"
 import Divider from "@modules/common/components/divider"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { useCallback, useEffect, useState } from "react"
-import { sanitizeCart } from "@lib/helper/sanitizecart"
-import { RazorpayPaymentButton } from "../payment-button/razorpay-payment-button"
 
 const Payment = ({
   cart,
@@ -26,7 +30,8 @@ const Payment = ({
 
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [cardBrand, setCardBrand] = useState<string | null>(null)
+  const [cardComplete, setCardComplete] = useState(false)
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(
     activeSession?.provider_id ?? ""
   )
@@ -37,34 +42,21 @@ const Payment = ({
 
   const isOpen = searchParams.get("step") === "payment"
 
-  const setPaymentMethod = async (method: string) => {
-    console.log("[setPaymentMethod] Method selected:", method)
-    setError(null)
-    setSelectedPaymentMethod(method)
+  const isStripe = isStripeFunc(selectedPaymentMethod)
 
-    if (isRazorpay(method)) {
-      console.log(
-        "[setPaymentMethod] Initiating Razorpay session with cart:",
-        sanitizeCart(cart)
-      )
-      try {
-        const result = await initiatePaymentSession(cart.id, {
-          provider_id: method,
-          data: {
-            customer: sanitizeCart(cart),
-          },
-        })
-        console.log(
-          "[setPaymentMethod] Razorpay session initiated successfully:",
-          result
-        )
-      } catch (error) {
-        console.error(
-          "[setPaymentMethod] Error initiating Razorpay session:",
-          error
-        )
-        throw error
-      }
+  const setPaymentMethod = async (method: string) => {
+    setError(null)
+
+    console.log(cart)
+    setSelectedPaymentMethod(method)
+    if (isStripeFunc(method)) {
+      await initiatePaymentSession(cart, {
+        provider_id: method,
+      })
+    } else {
+      await initiatePaymentSession(cart, {
+        provider_id: method,
+      })
     }
   }
 
@@ -99,20 +91,15 @@ const Payment = ({
       const checkActiveSession =
         activeSession?.provider_id === selectedPaymentMethod
 
+      console.log("checking active session", checkActiveSession)
+
       if (!checkActiveSession) {
         await initiatePaymentSession(cart, {
           provider_id: selectedPaymentMethod,
-          // Include cart context for Razorpay
-          data: {
-            extra: cart,
-          },
+          //@ts-ignore
+
+          extra: cart,
         })
-        // const result = await initiatePaymentSession(cart, {
-        //   provider_id: selectedPaymentMethod,
-        //   data: {
-        //     extra: sanitizeCart(cart),
-        //   },
-        // })
       }
 
       if (!shouldInputCard) {
@@ -133,30 +120,6 @@ const Payment = ({
   useEffect(() => {
     setError(null)
   }, [isOpen])
-
-  const razorpaySession = cart?.payment_collection?.payment_sessions?.find(
-    (session: any) => session.provider_id === "pp_razorpay_razorpay"
-  )
-
-  const handlePaymentCompleted = async () => {
-    setIsSubmitting(true)
-    try {
-      // The payment is already verified and completed in the API endpoint
-      // Here we can redirect to a success page or show a success message
-
-      console.log("cart from payment route", cart)
-      window.location.href = `/order/confirmed/${cart.cart_id}`
-    } catch (err: any) {
-      setError(err.message || "An error occurred while completing checkout")
-      setIsSubmitting(false)
-    }
-  }
-
-  const handlePaymentError = (errorMessage: any) => {
-    console.error("[handlePaymentError] Payment error:", errorMessage)
-    setError(errorMessage)
-    setIsSubmitting(false)
-  }
 
   return (
     <div className="bg-white">
@@ -196,16 +159,28 @@ const Payment = ({
               >
                 {availablePaymentMethods.map((paymentMethod) => (
                   <div key={paymentMethod.id}>
-                    <PaymentContainer
-                      paymentInfoMap={paymentInfoMap}
-                      paymentProviderId={paymentMethod.id}
-                      selectedPaymentOptionId={selectedPaymentMethod}
-                    />
+                    {isStripeFunc(paymentMethod.id) ? (
+                      <StripeCardContainer
+                        paymentProviderId={paymentMethod.id}
+                        selectedPaymentOptionId={selectedPaymentMethod}
+                        paymentInfoMap={paymentInfoMap}
+                        setCardBrand={setCardBrand}
+                        setError={setError}
+                        setCardComplete={setCardComplete}
+                      />
+                    ) : (
+                      <PaymentContainer
+                        paymentInfoMap={paymentInfoMap}
+                        paymentProviderId={paymentMethod.id}
+                        selectedPaymentOptionId={selectedPaymentMethod}
+                      />
+                    )}
                   </div>
                 ))}
               </RadioGroup>
             </>
           )}
+
           {paidByGiftcard && (
             <div className="flex flex-col w-1/3">
               <Text className="txt-medium-plus text-ui-fg-base mb-1">
@@ -219,38 +194,27 @@ const Payment = ({
               </Text>
             </div>
           )}
+
           <ErrorMessage
             error={error}
             data-testid="payment-method-error-message"
           />
-          {isRazorpay(selectedPaymentMethod) ? (
-            <>
-              {console.log(
-                "[render] Rendering Razorpay button with session:",
-                razorpaySession
-              )}
-              <RazorpayPaymentButton
-                session={activeSession}
-                cart={cart}
-                notReady={false}
-                // onPaymentError={handlePaymentError}
-              />
-            </>
-          ) : (
-            <>
-              {console.log("[render] Rendering standard continue button")}
-              <Button
-                size="large"
-                className="mt-6"
-                onClick={handleSubmit}
-                isLoading={isLoading}
-                disabled={!selectedPaymentMethod && !paidByGiftcard}
-                data-testid="submit-payment-button"
-              >
-                Continue to review
-              </Button>
-            </>
-          )}
+
+          <Button
+            size="large"
+            className="mt-6"
+            onClick={handleSubmit}
+            isLoading={isLoading}
+            disabled={
+              (isStripe && !cardComplete) ||
+              (!selectedPaymentMethod && !paidByGiftcard)
+            }
+            data-testid="submit-payment-button"
+          >
+            {!activeSession && isStripeFunc(selectedPaymentMethod)
+              ? " Enter card details"
+              : "Continue to review"}
+          </Button>
         </div>
 
         <div className={isOpen ? "hidden" : "block"}>
@@ -281,7 +245,11 @@ const Payment = ({
                       <CreditCard />
                     )}
                   </Container>
-                  <Text>Another step will appear</Text>
+                  <Text>
+                    {isStripeFunc(selectedPaymentMethod) && cardBrand
+                      ? cardBrand
+                      : "Another step will appear"}
+                  </Text>
                 </div>
               </div>
             </div>

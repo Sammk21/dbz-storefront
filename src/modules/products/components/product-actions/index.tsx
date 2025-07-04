@@ -94,6 +94,8 @@ export default function ProductActions({
     return false
   }, [selectedVariant])
 
+  console.log(inStock, selectedVariant)
+
   const actionsRef = useRef<HTMLDivElement>(null)
 
   const inView = useIntersection(actionsRef, "0px")

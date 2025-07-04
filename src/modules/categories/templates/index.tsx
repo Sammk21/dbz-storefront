@@ -8,6 +8,8 @@ import { SortOptions } from "@modules/store/components/refinement-list/sort-prod
 import PaginatedProducts from "@modules/store/templates/paginated-products"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import { HttpTypes } from "@medusajs/types"
+import { CategoryHeader } from "../components/category-header"
+import CategoryFilters from "../components/category-filter"
 
 export default function CategoryTemplate({
   category,
@@ -38,10 +40,19 @@ export default function CategoryTemplate({
 
   return (
     <div
-      className="flex flex-col small:flex-row small:items-start py-6 content-container"
+      className="flex flex-col small:items-start py-6 pt-16 content-container"
       data-testid="category-container"
     >
-      <RefinementList sortBy={sort} data-testid="sort-by-container" />
+      {/* Header Section - Server Component */}
+      <CategoryHeader category={category} parents={parents.reverse()} />
+
+      {/* Filter and Sort Bar - Client Component */}
+      <CategoryFilters
+        sortBy={sort}
+        productsCount={category.products?.length || 0}
+      />
+
+      {/* <RefinementList sortBy={sort} data-testid="sort-by-container" /> */}
       <div className="w-full">
         <div className="flex flex-row mb-8 text-2xl-semi gap-4">
           {parents &&
@@ -57,7 +68,7 @@ export default function CategoryTemplate({
                 /
               </span>
             ))}
-          <h1 data-testid="category-page-title">{category.name}</h1>
+          {/* <h1 data-testid="category-page-title">{category.name}</h1> */}
         </div>
         {category.description && (
           <div className="mb-8 text-base-regular">

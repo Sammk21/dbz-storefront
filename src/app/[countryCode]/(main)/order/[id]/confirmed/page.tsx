@@ -15,8 +15,10 @@ export default async function OrderConfirmedPage(props: Props) {
   const params = await props.params
   const order = await retrieveOrder(params.id).catch(() => null)
 
+  console.log("params", params.id)
+
   if (!order) {
-    return notFound()
+    return <div>{order}</div>
   }
 
   return <OrderCompletedTemplate order={order} />

@@ -45,6 +45,7 @@ const ItemsTemplate = ({ cart }: ItemsTemplateProps) => {
                   .map((item) => {
                     return (
                       <Item
+                      
                         key={item.id}
                         item={item}
                         currencyCode={cart?.currency_code}

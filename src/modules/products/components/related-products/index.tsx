@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { listProducts } from "@lib/data/products"
 import { getRegion } from "@lib/data/regions"
 import { HttpTypes } from "@medusajs/types"

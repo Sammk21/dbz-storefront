@@ -13,7 +13,8 @@ import DeleteButton from "@modules/common/components/delete-button"
 import LineItemOptions from "@modules/common/components/line-item-options"
 import LineItemPrice from "@modules/common/components/line-item-price"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
-import Thumbnail from "@modules/products/components/thumbnail"
+import { Thumbnail } from "@modules/products/components/thumbnail"
+import { Menu, ShoppingBag } from "lucide-react"
 import { usePathname } from "next/navigation"
 import { Fragment, useEffect, useRef, useState } from "react"
 
@@ -80,12 +81,36 @@ const CartDropdown = ({
       onMouseLeave={close}
     >
       <Popover className="relative h-full">
-        <PopoverButton className="h-full">
+        <PopoverButton className="h-full w-full relative ">
           <LocalizedClientLink
-            className="hover:text-ui-fg-base"
+            className="flex gap-1 items-center "
             href="/cart"
             data-testid="nav-cart-link"
-          >{`Cart (${totalItems})`}</LocalizedClientLink>
+          >
+            <svg
+              width="15"
+              height="16"
+              viewBox="0 0 15 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M10.8032 3.50848C10.8032 1.85163 9.46008 0.508484 7.80322 0.508484C6.14637 0.508484 4.80322 1.85163 4.80322 3.50848"
+                stroke="currentColor"
+              ></path>
+              <rect
+                x="1.30322"
+                y="4.00848"
+                width="13"
+                height="11"
+                stroke="currentColor"
+              ></rect>
+            </svg>
+
+            <span className="uppercase absolute bg-black w-4 h-4 flex justify-center items-center p-1 rounded-full text-white -top-[14px] -right-[14px]  text-xs font-thin">
+              {totalItems}
+            </span>
+          </LocalizedClientLink>
         </PopoverButton>
         <Transition
           show={cartDropdownOpen}
@@ -99,7 +124,7 @@ const CartDropdown = ({
         >
           <PopoverPanel
             static
-            className="hidden small:block absolute top-[calc(100%+1px)] right-0 bg-white border-x border-b border-gray-200 w-[420px] text-ui-fg-base"
+            className="hidden small:block absolute top-[calc(100%+1px)] right-0 bg-white rounded-md border-x border-b border-gray-200 w-[420px] text-ui-fg-base"
             data-testid="nav-cart-dropdown"
           >
             <div className="p-4 flex items-center justify-center">

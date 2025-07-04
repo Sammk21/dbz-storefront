@@ -1,10 +1,8 @@
 import { listProducts } from "@lib/data/products"
 import { HttpTypes } from "@medusajs/types"
 import { Text } from "@medusajs/ui"
-
-import InteractiveLink from "@modules/common/components/interactive-link"
-import ProductPreview from "@modules/products/components/product-preview"
 import Slider from "../slider"
+import { source_code } from "@modules/home/components/featured-products/slider"
 
 export default async function ProductRail({
   collection,
@@ -21,7 +19,7 @@ export default async function ProductRail({
       //@ts-ignore
       //TODO: fix type issue
       collection_id: collection.id,
-      fields: "*variants.calculated_price",
+      fields: "*variants.calculated_price,*variants.inventory_quantity",
     },
   })
 
@@ -30,9 +28,11 @@ export default async function ProductRail({
   }
 
   return (
-    <div className="content-container py-12 ">
+    <div className="sm:content-container px-1  ">
       <div className="flex justify-between mb-8">
-        <Text className="textglobal text-xl text-3xl  leading-none flex items-baseline">
+        <Text
+          className={`textglobal text-xl text-3xl text-center  leading-none flex items-baseline ${source_code.className}`}
+        >
           <span className="">Collection: {collection.title}</span>
         </Text>
       </div>

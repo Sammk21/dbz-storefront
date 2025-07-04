@@ -1,6 +1,7 @@
 import { HttpTypes } from "@medusajs/types"
 import { Heading, Text } from "@medusajs/ui"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
+import { source_code } from "@modules/home/components/featured-products/slider"
 
 type ProductInfoProps = {
   product: HttpTypes.StoreProduct
@@ -13,21 +14,21 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
         {product.collection && (
           <LocalizedClientLink
             href={`/collections/${product.collection.handle}`}
-            className="text-medium text-ui-fg-muted hover:text-ui-fg-subtle"
+            className="text-medium  hover:text-ui-fg-subtle"
           >
             {product.collection.title}
           </LocalizedClientLink>
         )}
         <Heading
           level="h2"
-          className="text-3xl leading-10 text-ui-fg-base"
+          className={`text-[1.8rem] leading-10 ${source_code.className}`}
           data-testid="product-title"
         >
           {product.title}
         </Heading>
 
         <Text
-          className="text-medium text-ui-fg-subtle whitespace-pre-line"
+          className={`text-medium whitespace-pre-line text-gray-600`}
           data-testid="product-description"
         >
           {product.description}

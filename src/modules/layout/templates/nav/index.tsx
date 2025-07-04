@@ -1,18 +1,57 @@
-"use client"
+// "use client"
+import LocalizedClientLink from "@modules/common/components/localized-client-link"
+import CartButton from "@modules/layout/components/cart-button"
+import { Suspense } from "react"
+import FullScreenMenu from "components/FullScreenMenu"
 import Logo from "@modules/logo/logo"
+import { Search, ShoppingBag } from "lucide-react"
+import Link from "next/link"
+import Image from "next/image"
+interface HeaderProps {
+  className?: string
+}
 
-export default function Nav() {
+export default function Nav({ className = "" }: HeaderProps) {
   return (
-    <div className="sticky top-0 inset-x-0 z-50 group">
-      <header className="fixed top-0 left-0 right-0 w-[100dvw] h-16  z-10">
-        <div className="grid grid-cols-3 px-3 mt-4 relative ">
-          <div></div>
-          {/* Logo */}
-
+    <>
+      <header className="fixed top-0 inset-x-0 z-50 group bg-[#eeedeb]">
+        <div className="flex justify-between relative ">
+          <FullScreenMenu />
           <Logo />
-          <div></div>
+          <Suspense
+            fallback={
+              <LocalizedClientLink
+                className="text-white hover:text-white flex gap-2 absolute top-[50px] right-[50px]"
+                href="/cart"
+                dataTestId="nav-cart-link"
+              >
+                <svg
+                  width="15"
+                  height="16"
+                  viewBox="0 0 15 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M10.8032 3.50848C10.8032 1.85163 9.46008 0.508484 7.80322 0.508484C6.14637 0.508484 4.80322 1.85163 4.80322 3.50848"
+                    stroke="currentColor"
+                  ></path>
+                  <rect
+                    x="1.30322"
+                    y="4.00848"
+                    width="13"
+                    height="11"
+                    stroke="currentColor"
+                  ></rect>
+                </svg>
+                (0)
+              </LocalizedClientLink>
+            }
+          >
+            <CartButton />
+          </Suspense>
         </div>
       </header>
-    </div>
+    </>
   )
 }

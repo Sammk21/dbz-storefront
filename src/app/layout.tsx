@@ -1,6 +1,8 @@
 import { getBaseURL } from "@lib/util/env"
+import LenisProvider from "@modules/lenis"
 import { Metadata } from "next"
 import "styles/globals.css"
+import { source_code } from "@modules/home/components/featured-products/slider"
 
 export const metadata: Metadata = {
   metadataBase: new URL(getBaseURL()),
@@ -8,9 +10,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout(props: { children: React.ReactNode }) {
   return (
-    <html lang="en" data-mode="light">
-      <body>
+    <html lang="en">
+      <body className={source_code.className}>
+        {/* <LenisProvider> */}
         <main className="relative">{props.children}</main>
+        {/* </LenisProvider> */}
       </body>
     </html>
   )

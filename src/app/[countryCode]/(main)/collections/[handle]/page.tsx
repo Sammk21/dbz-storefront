@@ -14,7 +14,7 @@ type Props = {
     sortBy?: SortOptions
   }>
 }
-
+//@ts-ignore
 export const PRODUCT_LIMIT = 12
 
 export async function generateStaticParams() {
@@ -59,8 +59,8 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   }
 
   const metadata = {
-    title: `${collection.title} | Medusa Store`,
-    description: `${collection.title} collection`,
+    title: `${collection.title} | Divide By Zero Store`,
+    description: `${collection.title} Collection`,
   } as Metadata
 
   return metadata
@@ -80,11 +80,13 @@ export default async function CollectionPage(props: Props) {
   }
 
   return (
-    <CollectionTemplate
-      collection={collection}
-      page={page}
-      sortBy={sortBy}
-      countryCode={params.countryCode}
-    />
+    <div className="mt-16">
+      <CollectionTemplate
+        collection={collection}
+        page={page}
+        sortBy={sortBy}
+        countryCode={params.countryCode}
+      />
+    </div>
   )
 }
