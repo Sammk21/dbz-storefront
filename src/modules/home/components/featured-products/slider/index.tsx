@@ -20,6 +20,7 @@ export const Slider = ({
   isFeatured?: boolean
   region: HttpTypes.StoreRegion
 }) => {
+  console.log("/slider", products)
   return (
     <div className="relative grid w-full grid-cols-2 sm:grid-cols-3 md:grid-cols-4 ">
       {products &&
