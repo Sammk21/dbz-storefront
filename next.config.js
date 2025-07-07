@@ -40,6 +40,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "only-education-strapi-media.s3.ap-south-1.amazonaws.com",
       },
+      {
+        protocol: "https",
+        hostname: "dsvwvnvgrssbnkejrdzw.supabase.co",
+      },
     ],
   },
 }
