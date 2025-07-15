@@ -96,9 +96,6 @@ const Payment = ({
       if (!checkActiveSession) {
         await initiatePaymentSession(cart, {
           provider_id: selectedPaymentMethod,
-          //@ts-ignore
-
-          extra: cart,
         })
       }
 

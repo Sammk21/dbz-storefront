@@ -21,14 +21,16 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
         )}
         <Heading
           level="h2"
-          className={`text-[1.8rem] leading-10 ${source_code.className}`}
+          className={`text-[4rem] textglobal uppercase font-medium text-global humane leading-10 `}
           data-testid="product-title"
         >
           {product.title}
         </Heading>
-
+        {/* <h1 className="sm:text-[14vw] humane lg:text-[10vw] text-[30vw] uppercase">
+          {product.title}
+        </h1> */}
         <Text
-          className={`text-medium whitespace-pre-line text-gray-600`}
+          className={`text-medium whitespace-pre-line text-gray-600 ${source_code.className}`}
           data-testid="product-description"
         >
           {product.description}

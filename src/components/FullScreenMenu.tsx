@@ -4,6 +4,15 @@
 import { useEffect, useRef } from "react"
 import { gsap } from "gsap"
 import { CustomEase } from "gsap/dist/CustomEase"
+import Link from "next/link"
+import LocalizedClientLink from "@modules/common/components/localized-client-link"
+
+const SideMenuItems = {
+  Home: "/",
+  Store: "/store",
+  Account: "/account",
+  Cart: "/cart",
+}
 
 export default function FullScreenMenu() {
   const menuToggleRef = useRef(null)
@@ -23,13 +32,13 @@ export default function FullScreenMenu() {
     )
 
     // Split text into spans for the header animation
-    const splitTextIntoSpans = (selector:any) => {
+    const splitTextIntoSpans = (selector: any) => {
       const element = document.querySelector(selector)
       if (element) {
         const text = element.innerText
         const splitText = text
           .split("")
-          .map((char:any) => {
+          .map((char: any) => {
             return `<span>${char === " " ? "&nbsp; &nbsp;" : char}</span>`
           })
           .join("")
@@ -229,21 +238,23 @@ export default function FullScreenMenu() {
             fill="none"
             role="presentation"
           >
-            <path d="M2.49951 2.49953L13.5 13.5" stroke="currentColor"></path>
-            <path d="M2.49951 13.5005L13.5 2.5" stroke="currentColor"></path>
+            <path d="M2.49951 2.49953L13.5 13.5" stroke="#fff"></path>
+            <path d="M2.49951 13.5005L13.5 2.5" stroke="#fff"></path>
           </svg>
         </button>
         <div className="col col-1">
           <div className="links">
-            <div className="link" ref={setLinkRef}>
-              <a href="#">Shirt</a>
-            </div>
-            <div className="link" ref={setLinkRef}>
-              <a href="#">Bottom-wear</a>
-            </div>
-            <div className="link" ref={setLinkRef}>
-              <a href="#">T-shirts</a>
-            </div>
+            {Object.entries(SideMenuItems).map(([name, href]) => (
+              <div className="link" key={name} ref={setLinkRef}>
+                <LocalizedClientLink
+                  className="hover:-translate-x-32 hover:text-gray-400"
+                  href={href}
+                  onClick={handleMenuToggle}
+                >
+                  {name}
+                </LocalizedClientLink>
+              </div>
+            ))}
           </div>
           <div className="video-wrapper" ref={videoWrapperRef}>
             <video autoPlay muted loop>

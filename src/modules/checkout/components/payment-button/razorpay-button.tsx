@@ -25,7 +25,7 @@ export const RazorpayPaymentButton = ({
 
   const [orderData, setOrderData] = useState({ id: "" })
 
-  console.log(`session_data: ` + JSON.stringify(session))
+
   const onPaymentCompleted = async () => {
     await placeOrder().catch(() => {
       setErrorMessage("An error occurred, please try again.")

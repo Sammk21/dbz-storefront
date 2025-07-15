@@ -7,6 +7,8 @@ import Logo from "@modules/logo/logo"
 import { Search, ShoppingBag } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
+
+
 interface HeaderProps {
   className?: string
 }

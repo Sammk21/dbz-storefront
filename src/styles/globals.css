@@ -1,6 +1,9 @@
 @import url('https://use.typekit.net/uuv2zzr.css');
 @import url("./fontcss/Aktura_Complete/Fonts/WEB/css/aktura.css");
 @import url("./fontcss/Anton_Complete/Fonts/WEB/css/anton.css");
+@import url("./fontcss/satoshi.css");
+@import url("./fontcss/Humane.css");
+@import url("./fontcss/Dirtyline.css");
 
 @tailwind base;
 @tailwind components;
@@ -606,6 +609,7 @@ video::-webkit-media-controls {
   letter-spacing: -1.5px;
   line-height: 125%;
 }
+
 
 .video-wrapper {
   width: 100%;

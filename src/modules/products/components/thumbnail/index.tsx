@@ -8,7 +8,7 @@ type ThumbnailProps = {
   thumbnail?: string | null
   // TODO: Fix image typings
   images?: any[] | null
-  size?: "small" | "medium" | "large" | "full" | "square"
+  size?: "small" | "medium" | "large" | "full" | "square" | "3/1"
   isFeatured?: boolean
   className?: string
   "data-testid"?: string

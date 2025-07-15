@@ -1,12 +1,9 @@
-import React, { Suspense } from "react"
+import React from "react"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import { Thumbnail } from "@modules/products/components/thumbnail"
 import { HttpTypes } from "@medusajs/types"
 import ProductPriceListing from "@modules/products/components/product-price-in-listing"
 import { Source_Code_Pro } from "next/font/google"
-import ProductOnboardingCta from "@modules/products/components/product-onboarding-cta"
-import ProductActions from "@modules/products/components/product-actions"
-import ProductActionsWrapper from "@modules/products/templates/product-actions-wrapper"
 import CardAddToCart from "@modules/products/components/card-add-to-cart"
 
 export const source_code = Source_Code_Pro({ subsets: ["latin"] })
@@ -20,7 +17,6 @@ export const Slider = ({
   isFeatured?: boolean
   region: HttpTypes.StoreRegion
 }) => {
-  console.log("/slider", products)
   return (
     <div className="relative grid w-full grid-cols-2 sm:grid-cols-3 md:grid-cols-4 ">
       {products &&

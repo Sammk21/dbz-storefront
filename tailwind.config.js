@@ -202,6 +202,22 @@ module.exports = {
   				'100%': {
   					transform: 'translateY(0)'
   				}
+  			},
+  			'accordion-down': {
+  				from: {
+  					height: '0'
+  				},
+  				to: {
+  					height: 'var(--radix-accordion-content-height)'
+  				}
+  			},
+  			'accordion-up': {
+  				from: {
+  					height: 'var(--radix-accordion-content-height)'
+  				},
+  				to: {
+  					height: '0'
+  				}
   			}
   		},
   		animation: {
@@ -213,7 +229,9 @@ module.exports = {
   			'accordion-close': 'accordion-slide-up 300ms cubic-bezier(0.87, 0, 0.13, 1) forwards',
   			enter: 'enter 200ms ease-out',
   			'slide-in': 'slide-in 1.2s cubic-bezier(.41,.73,.51,1.02)',
-  			leave: 'leave 150ms ease-in forwards'
+  			leave: 'leave 150ms ease-in forwards',
+  			'accordion-down': 'accordion-down 0.2s ease-out',
+  			'accordion-up': 'accordion-up 0.2s ease-out'
   		}
   	}
   },

@@ -33,6 +33,11 @@ const nextConfig = {
         hostname: "medusa-server-testing.s3.amazonaws.com",
       },
       {
+
+        protocol: "https",
+        hostname: "a.storyblok.com"
+      },
+      {
         protocol: "https",
         hostname: "medusa-server-testing.s3.us-east-1.amazonaws.com",
       },

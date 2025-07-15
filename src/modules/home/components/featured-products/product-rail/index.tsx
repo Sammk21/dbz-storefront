@@ -3,6 +3,7 @@ import { HttpTypes } from "@medusajs/types"
 import { Text } from "@medusajs/ui"
 import Slider from "../slider"
 import { source_code } from "@modules/home/components/featured-products/slider"
+import SwiperSlider from "../slider/swiperslider"
 
 export default async function ProductRail({
   collection,
@@ -29,16 +30,28 @@ export default async function ProductRail({
 
   return (
     <div className="sm:content-container px-1  ">
-      <div className="flex justify-between mb-8">
-        <Text
-          className={`textglobal text-xl text-3xl text-center  leading-none flex items-baseline ${source_code.className}`}
-        >
-          <span className="">Collection: {collection.title}</span>
-        </Text>
+      <div className="sm:grid sm:grid-cols-2 flex flex-col  place-content-center  mb-4">
+        <div className="h-full w-full">
+          <h3
+            className={` textglobal text-2xl font-semibold leading-none flex  items-baseline ${source_code.className}`}
+          >
+            Collection: {collection.title}
+          </h3>
+        </div>
+        <div className="textglobal mt-3  w-full flex items-center text-xs sm:text-sm ">
+          These baggy pants aren&apos;t just about style; they&apos;re about
+          feeling like you&apos;re floating through space while still looking at
+          Earth. Each pair is like a cosmic hug for your legs, with that perfect
+          balance.
+        </div>
       </div>
-
-      <div className="sldier-container overflow-hidden">
-        <Slider products={pricedProducts} region={region} />
+      <div className="sldier-container overflow-hidden pt-5">
+        <div className="">
+          <Slider products={pricedProducts} region={region} />
+        </div>
+        {/* <div className="hidden md:block">
+          <SwiperSlider products={pricedProducts} region={region} />
+        </div> */}
       </div>
     </div>
   )
