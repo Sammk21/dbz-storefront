@@ -30,7 +30,7 @@ export default async function ProductRail({
 
   return (
     <div className="sm:content-container px-1  ">
-      <div className="sm:grid sm:grid-cols-2 flex flex-col  place-content-center  mb-4">
+      <div className="sm:flex-row justify-between flex flex-col  place-content-center  mb-4">
         <div className="h-full w-full">
           <h3
             className={` textglobal text-2xl font-semibold leading-none flex  items-baseline ${source_code.className}`}
@@ -45,7 +45,7 @@ export default async function ProductRail({
           balance.
         </div>
       </div>
-      <div className="sldier-container overflow-hidden pt-5">
+      <div className="sldier-container overflow-hidden pt-12">
         <div className="">
           <Slider products={pricedProducts} region={region} />
         </div>

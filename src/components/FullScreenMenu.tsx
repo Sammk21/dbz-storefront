@@ -195,7 +195,7 @@ export default function FullScreenMenu() {
       <div
         ref={menuToggleRef}
         onClick={handleMenuToggle}
-        className="absolute top-[50px] left-[50px] uppercase closed "
+        className="absolute top-[50px] left-[50px] uppercase closed hover:bg-slate-600 "
       >
         <svg
           className=" pointer-events-none"
