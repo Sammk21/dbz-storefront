@@ -23,7 +23,6 @@ export default async function ProductRail({
       fields: "*variants.calculated_price,*variants.inventory_quantity",
     },
   })
-
   if (!pricedProducts) {
     return null
   }
