@@ -46,8 +46,6 @@ const Payment = ({
 
   const setPaymentMethod = async (method: string) => {
     setError(null)
-
-    console.log(cart)
     setSelectedPaymentMethod(method)
     if (isStripeFunc(method)) {
       await initiatePaymentSession(cart, {
@@ -90,8 +88,6 @@ const Payment = ({
 
       const checkActiveSession =
         activeSession?.provider_id === selectedPaymentMethod
-
-      console.log("checking active session", checkActiveSession)
 
       if (!checkActiveSession) {
         await initiatePaymentSession(cart, {
