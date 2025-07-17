@@ -1,8 +1,9 @@
 "use client"
-import Image from "next/image"
 import { motion } from "framer-motion"
 import { Pacifico } from "next/font/google"
 import { cn } from "@lib/util/cn"
+import { Button } from "@medusajs/ui"
+import LocalizedClientLink from "@modules/common/components/localized-client-link"
 
 const pacifico = Pacifico({
   subsets: ["latin"],
@@ -25,32 +26,49 @@ const fadeUpVariants = {
 
 const Hero = () => {
   return (
-    <>
-      <div className="textglobal ">
-        <div className="hero overflow-hidden  h-full w-full relative text-white  ">
-          <div className=" relative aspect-video w-full h-[calc(100vh)]">
-            {/* <motion.div
-              custom={1}
-              variants={fadeUpVariants as any}
-              animate="visible"
-            >
-              <h1 className="text-4xl sm:text-6xl md:text-8xl font-bold mb-6 md:mb-8 tracking-tight absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
-                <span className="bg-clip-text text-transparent bg-gradient-to-b from-red-600 to-red-600/80 dark:from-white dark:to-white/80">
-                  DIVIDE BY ZERO
-                </span>
-              </h1>
-            </motion.div> */}
-            <div className="absolute box z-10 top-0 bg-[#eeedeb] left-0 bottom-0 right-0 w-0 h-0"></div>
-            <Image
-              src="/images/DSCF3785.jpg"
-              alt=""
-              fill
-              className="object-cover object-bottom  intro-img "
+    <div className="textglobal">
+      <div className="hero overflow-hidden h-full w-full relative text-white">
+        <div className="relative w-full h-[calc(100vh)]">
+          {/* Background Video */}
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute top-0 left-0 w-full h-full object-cover z-0"
+          >
+            <source
+              src="https://only-education-strapi-media.s3.ap-south-1.amazonaws.com/Sequence_02_2_76ed56268b.mp4"
+              type="video/mp4"
             />
-          </div>
+            Your browser does not support the video tag.
+          </video>
+
+          {/* Optional color overlay box */}
+          {/* <div className="absolute box z-10 top-0 bg-[#eeedeb]/20 left-0 bottom-0 right-0 w-full h-full"></div> */}
+
+          {/* You can add text or other elements here */}
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            custom={0}
+            variants={fadeUpVariants as any}
+            className="z-20 relative flex  flex-col items-center justify-center h-full"
+          >
+            <h1
+              className={cn(
+                "text-5xl md:text-7xl text-black text-center humane"
+              )}
+            >
+              COL: 001
+            </h1>
+            <LocalizedClientLink href="/collections/001">
+              <Button>Shop Now</Button>
+            </LocalizedClientLink>
+          </motion.div>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 
