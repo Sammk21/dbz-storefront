@@ -7,9 +7,8 @@ import { InfiniteText } from "components/magicui/marquee"
 import Logo from "@modules/logo/logo"
 
 export const metadata: Metadata = {
-  title: "Medusa Next.js Starter Template",
-  description:
-    "A performant frontend ecommerce starter template with Next.js 15 and Medusa.",
+  title: "Divide By Zero ",
+  description: "Undefined Clothing brand",
 }
 
 export default async function Home(props: {

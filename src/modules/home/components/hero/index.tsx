@@ -57,7 +57,7 @@ const Hero = () => {
                 "text-5xl md:text-7xl text-black text-center humane"
               )}
             >
-              COL: 001
+              COLLECTION: 001
             </h1>
             <LocalizedClientLink href="/collections/001">
               <Button>Shop Now</Button>

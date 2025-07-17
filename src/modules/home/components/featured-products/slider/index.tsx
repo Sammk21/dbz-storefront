@@ -34,17 +34,7 @@ export const Slider = ({
               <div
                 className={`flex text-xs lg:text-sm  border-stone-400  mt-4 py-2 flex-col px-4 ${source_code.className}`}
               >
-                <p
-                  className="text-ui-fg-subtle capitalize"
-                  style={{
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                    whiteSpace: "nowrap",
-                    maxWidth: "calc(100% - 40px)",
-                  }}
-                >
-                  {product.title}
-                </p>
+                <p className="text-ui-fg-subtle capitalize">{product.title}</p>
 
                 <ProductPriceListing product={product} />
               </div>
