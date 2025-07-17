@@ -37,10 +37,7 @@ const Hero = () => {
             playsInline
             className="absolute top-0 left-0 w-full h-full object-cover z-0"
           >
-            <source
-              src="https://only-education-strapi-media.s3.ap-south-1.amazonaws.com/Sequence_02_2_76ed56268b.mp4"
-              type="video/mp4"
-            />
+            <source src="/video/Sequence 02_2.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
 
