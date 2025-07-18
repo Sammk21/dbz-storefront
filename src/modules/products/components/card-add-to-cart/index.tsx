@@ -15,8 +15,9 @@ type CardAddToCartProps = {
 
 const optionsAsKeymap = (
   variantOptions: HttpTypes.StoreProductVariant["options"]
-) => {
-  return variantOptions?.reduce((acc: Record<string, string>, varopt: any) => {
+): Record<string, string> => {
+  if (!variantOptions) return {}
+  return variantOptions.reduce((acc: Record<string, string>, varopt: any) => {
     acc[varopt.option_id] = varopt.value
     return acc
   }, {})
@@ -106,7 +107,6 @@ export default function CardAddToCart({
     setIsAdding(false)
   }
 
-
   // Simple product (single variant) or no variants
   if (!product.variants || product.variants.length <= 1) {
     return (
@@ -154,11 +154,37 @@ export default function CardAddToCart({
                 data-testid={`card-option-${option.id}`}
               >
                 <option value="">{option.title}</option>
-                {option.values?.map((value) => (
-                  <option key={value.id} value={value.value}>
-                    {value.value}
-                  </option>
-                ))}
+                {option.values?.map((value) => {
+                  const isOutOfStock = !product.variants?.some((variant) => {
+                    const variantOptions = optionsAsKeymap(variant.options)
+                    const matchesValue =
+                      variantOptions[option.id] === value.value
+
+                    const otherOptionsMatch = Object.entries(
+                      variantOptions
+                    ).every(([optId, val]) => {
+                      if (optId === option.id) return true // only care about other options
+                      return !options[optId] || options[optId] === val
+                    })
+
+                    const inStock =
+                      !variant.manage_inventory ||
+                      variant.allow_backorder ||
+                      (variant.inventory_quantity ?? 0) > 0
+
+                    return matchesValue && otherOptionsMatch && inStock
+                  })
+
+                  return (
+                    <option
+                      key={value.id}
+                      value={value.value}
+                      disabled={isOutOfStock}
+                    >
+                      {value.value} {isOutOfStock ? "❌" : ""}
+                    </option>
+                  )
+                })}
               </select>
             </div>
           ))}
