@@ -35,7 +35,7 @@ const nextConfig = {
       {
 
         protocol: "https",
-        hostname: "a.storyblok.com"
+        hostname: "file.dividebzero.in"
       },
       {
         protocol: "https",
