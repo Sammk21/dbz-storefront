@@ -9,6 +9,7 @@ type OptionSelectProps = {
   title: string
   disabled: boolean
   variants: HttpTypes.StoreProductVariant[]
+  options: Record<string, string | undefined>
   "data-testid"?: string
 }
 
@@ -30,6 +31,7 @@ const OptionSelect: React.FC<OptionSelectProps> = ({
   variants,
   "data-testid": dataTestId,
   disabled,
+  options,
 }) => {
   const filteredOptions = (option.values ?? []).map((v) => v.value)
 
@@ -49,7 +51,7 @@ const OptionSelect: React.FC<OptionSelectProps> = ({
             const otherOptionsMatch = Object.entries(variantOptions).every(
               ([optId, val]) => {
                 if (optId === option.id) return true
-                return val === current || !current
+                return options[optId] === val || !options[optId]
               }
             )
 

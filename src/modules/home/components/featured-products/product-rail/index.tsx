@@ -48,9 +48,7 @@ export default async function ProductRail({
         <div className="">
           <Slider products={pricedProducts} region={region} />
         </div>
-        {/* <div className="hidden md:block">
-          <SwiperSlider products={pricedProducts} region={region} />
-        </div> */}
+    
       </div>
     </div>
   )

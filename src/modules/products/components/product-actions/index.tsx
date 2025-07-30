@@ -124,15 +124,16 @@ export default function ProductActions({
               {(product.options || []).map((option) => {
                 return (
                   <div key={option.id}>
-                    <OptionSelect
-                      variants={product.variants ?? []}
-                      option={option}
-                      current={options[option.id]}
-                      updateOption={setOptionValue}
-                      title={option.title ?? ""}
-                      data-testid="product-options"
-                      disabled={!!disabled || isAdding}
-                    />
+                      <OptionSelect
+                        variants={product.variants ?? []}
+                        option={option}
+                        current={options[option.id]}
+                        updateOption={setOptionValue}
+                        title={option.title ?? ""}
+                        data-testid="product-options"
+                        disabled={!!disabled || isAdding}
+                        options={options}
+                      />
                   </div>
                 )
               })}
