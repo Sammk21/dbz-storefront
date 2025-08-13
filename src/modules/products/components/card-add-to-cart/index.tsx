@@ -113,7 +113,7 @@ export default function CardAddToCart({
       <Button
         onClick={handleAddToCart}
         disabled={!inStock || !selectedVariant || disabled || isAdding}
-        className="w-full "
+        className="w-full text-xs "
         size="small"
         isLoading={isAdding}
         data-testid="card-add-to-cart-button"
@@ -135,7 +135,7 @@ export default function CardAddToCart({
           onClick={() => setShowOptions(true)}
           disabled={disabled}
           variant="secondary"
-          className="w-full"
+          className="w-full rounded-none shadow-none border text-xs"
           size="small"
           data-testid="card-quick-add-button"
         >
@@ -150,7 +150,7 @@ export default function CardAddToCart({
                 value={options[option.id] || ""}
                 onChange={(e) => setOptionValue(option.id, e.target.value)}
                 disabled={disabled || isAdding}
-                className="w-full text-sm border border-gray-300 rounded px-2 py-1 disabled:opacity-50"
+                className="w-full text-xs border border-gray-300 rounded-none px-2 py-1 disabled:opacity-50"
                 data-testid={`card-option-${option.id}`}
               >
                 <option value="">{option.title}</option>
@@ -177,6 +177,7 @@ export default function CardAddToCart({
 
                   return (
                     <option
+                      className="text-xs"
                       key={value.id}
                       value={value.value}
                       disabled={isOutOfStock}
@@ -200,7 +201,7 @@ export default function CardAddToCart({
                 isAdding ||
                 !isValidVariant
               }
-              className="flex-1"
+              className="flex-1 bg-black hover:bg-[#101010] text-xs rounded-none border-gray-300"
               size="small"
               isLoading={isAdding}
               data-testid="card-add-to-cart-button"
@@ -216,7 +217,7 @@ export default function CardAddToCart({
               disabled={isAdding}
               variant="secondary"
               size="small"
-              className="px-3"
+              className="px-3 rounded-none  shadow-none border"
               data-testid="card-close-options-button"
             >
               ×

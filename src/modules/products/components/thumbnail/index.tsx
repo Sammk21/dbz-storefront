@@ -27,9 +27,9 @@ export const Thumbnail: React.FC<ThumbnailProps> = ({
   return (
     <Container
       className={clx(
-        "relative w-full overflow-hidden p-4  shadow-none ease-in-out duration-150 bg-transparent",
-        (className = "aspect-[9/12]")
+        "relative w-full overflow-hidden p-4 shadow-none ease-in-out duration-150 flex rounded-none   bg-[#f7f7f7]  aspect-[187/251] lg:aspect-[3/4]"
       )}
+      style={{ backgroundColor: "#F7F7F7" }}
     >
       <ImageOrPlaceholder image={initialImage} size={size} />
     </Container>
@@ -44,7 +44,7 @@ const ImageOrPlaceholder = ({
     <Image
       src={image}
       alt="Thumbnail"
-      className="absolute inset-0 object-cover object-center"
+      className="absolute inset-0 object-contain object-center"
       draggable={false}
       quality={50}
       sizes="(max-width: 576px) 280px, (max-width: 768px) 360px, (max-width: 992px) 480px, 800px"

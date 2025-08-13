@@ -25,6 +25,7 @@
     "@stripe/stripe-js": "^1.29.0",
     "@vercel/analytics": "^1.5.0",
     "commerce-kit": "^0.0.40",
+    "embla-carousel-react": "^8.6.0",
     "flickity": "^2.3.0",
     "framer-motion": "^12.5.0",
     "gsap": "^3.13.0",
@@ -42,7 +43,8 @@
     "server-only": "^0.0.1",
     "swiper": "^11.2.6",
     "tailwindcss-radix": "^2.8.0",
-    "webpack": "^5"
+    "webpack": "^5",
+    "zod": "^4.0.17"
   },
   "devDependencies": {
     "@babel/core": "^7.17.5",

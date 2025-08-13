@@ -4,6 +4,9 @@ import { clx } from "@medusajs/ui"
 import { getProductPrice } from "@lib/util/get-product-price"
 import { HttpTypes } from "@medusajs/types"
 
+const formatPrice = (price: number) => {
+  return `₹${Math.floor(price).toLocaleString("en-IN")}`
+}
 
 const ProductPriceListing = ({
   product,
@@ -30,12 +33,12 @@ const ProductPriceListing = ({
           "text-ui-fg-interactive": selectedPrice.price_type === "sale",
         })}
       >
-        {!variant && "From "}
+        {!variant && " "}
         <span
           data-testid="product-price"
           data-value={selectedPrice.calculated_price_number}
         >
-          {selectedPrice.calculated_price}
+          {formatPrice(selectedPrice.calculated_price_number)}
         </span>
       </span>
       {selectedPrice.price_type === "sale" && (

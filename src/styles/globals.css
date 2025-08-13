@@ -11,6 +11,56 @@
 
 
 
+@layer components {
+  .btn_epic {
+    --btn_epic_color_01: #0d0e0e;
+    --btn_epic_color_02: #fff;
+    position: relative;
+    overflow: hidden;
+    height: var(--btn_epic_height);
+    line-height: var(--btn_epic_height);
+    display: inline-block;
+    padding: 0;
+    text-decoration: none;
+    cursor: pointer;
+    background: var(--btn_epic_color_01);
+    border-style: solid;
+    border-width: 1px;
+    transition: color 0.4s ease;
+  }
+
+  /* Before (slide overlay) */
+  .btn_epic::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--btn_epic_color_02);
+    transition: left 0.4s ease;
+    z-index: 1;
+  }
+
+  /* After (text color animation) */
+  .btn_epic span {
+    position: relative;
+    z-index: 2;
+    transition: color 0.4s ease;
+  }
+
+  /* Hover effect */
+  .btn_epic:hover::before {
+    left: 0;
+  }
+
+  .btn_epic:hover span {
+    color: var(--btn_epic_color_01);
+  }
+}
+
+
+
 @layer utilities {
   /* Chrome, Safari and Opera */
   .no-scrollbar::-webkit-scrollbar {
@@ -883,4 +933,12 @@ https://flickity.metafizzy.co
 
 .flickity-page-dots .dot.is-selected {
   opacity: 1;
+}
+
+
+
+
+.blend-text {
+   mix-blend-mode: difference;
+  color: #fff;
 }

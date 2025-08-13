@@ -7,6 +7,7 @@ import {Thumbnail} from "../thumbnail"
 import PreviewPrice from "./price"
 import CardAddToCart from "../card-add-to-cart"
 import { source_code } from "@modules/home/components/featured-products/slider"
+import ProductPriceListing from "../product-price-in-listing"
 
 export default async function ProductPreview({
   product,
@@ -34,7 +35,7 @@ export default async function ProductPreview({
             size="small"
             isFeatured={isFeatured}
           />
-          <div className={`flex txt-compact-medium mt-4 justify-center`}>
+          {/* <div className={`flex txt-compact-medium mt-4 justify-center`}>
             <p
               className={`text-ui-fg-subtle  ${source_code.className}`}
               data-testid="product-title"
@@ -44,10 +45,19 @@ export default async function ProductPreview({
           </div>
           <div className="flex items-center justify-center gap-x-2">
             {cheapestPrice && <PreviewPrice price={cheapestPrice} />}
+          </div> */}
+          <div
+            className={`text-xs flex justify-between items-center   border-stone-400  mt-2 py-2  px-1 ${source_code.className}`}
+          >
+            <p className="font-semibold capitalize">{product.title}</p>
+
+            <ProductPriceListing product={product} />
           </div>
         </div>
       </LocalizedClientLink>
-      <CardAddToCart disabled={false} product={product} region={region} />
+      <div className="px-2">
+        <CardAddToCart disabled={false} product={product} region={region} />
+      </div>
     </>
   )
 }

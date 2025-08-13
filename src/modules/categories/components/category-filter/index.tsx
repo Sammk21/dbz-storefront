@@ -120,14 +120,14 @@ const CategoryFilters = ({ sortBy, productsCount }: CategoryFiltersProps) => {
   return (
     <>
       {/* Filter and Sort Bar */}
-      <div className=" z-40 w-full bg-[#eeedeb]  border-y border-stone-300">
+      <div className=" z-40 w-full ">
         <div className=" mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="flex items-center w-full justify-between py-4">
             <div className="flex items-center space-x-6">
               {/* Filter Button */}
               <button
                 onClick={() => setIsFilterOpen(true)}
-                className="flex items-center space-x-2 text-sm font-medium hover:text-gray-600 transition-colors"
+                className="flex items-center space-x-2 text-xs font-medium hover:text-gray-600 transition-colors"
               >
                 <SlidersHorizontal className="w-4 h-4" />
                 <span>Filter</span>
@@ -146,7 +146,7 @@ const CategoryFilters = ({ sortBy, productsCount }: CategoryFiltersProps) => {
                   placeholder="Search products..."
                   value={searchTerm}
                   onChange={(e) => handleSearchChange(e.target.value)}
-                  className="pl-10 pr-4 py-2 border border-gray-200 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent w-64"
+                  className="pl-10 pr-4 py-2 border border-gray-200 rounded-full text-xs focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent w-64"
                 />
               </div> */}
             </div>
@@ -155,7 +155,7 @@ const CategoryFilters = ({ sortBy, productsCount }: CategoryFiltersProps) => {
               {/* Sort Dropdown */}
               <div className="relative">
                 <select
-                  className="appearance-none bg-transparent border-none text-sm font-medium pr-8 focus:outline-none cursor-pointer"
+                  className="appearance-none bg-transparent border-none text-xs font-medium pr-8 focus:outline-none cursor-pointer"
                   value={sortBy}
                   onChange={(e) => handleSortChange(e.target.value)}
                 >
@@ -193,7 +193,7 @@ const CategoryFilters = ({ sortBy, productsCount }: CategoryFiltersProps) => {
               </div> */}
 
               {/* Results Count */}
-              <span className="text-sm text-gray-500">
+              <span className="text-xs text-gray-500">
                 {productsCount} items
               </span>
             </div>

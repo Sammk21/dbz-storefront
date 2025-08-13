@@ -11,7 +11,7 @@ function CollectionHeader({ collection }: CollectionHeaderProps) {
     <div className="border-b border-gray-100 w-full ">
       <div className=" mx-auto px-4 sm:px-3 lg:px-8 py-3 ">
         {/* Breadcrumb */}
-        <nav className="flex items-center space-x-2 text-sm mb-4">
+        <nav className="flex items-center space-x-2 text-xs mb-3">
           <LocalizedClientLink
             href="/"
             className="text-gray-500 hover:text-black transition-colors"
@@ -19,7 +19,6 @@ function CollectionHeader({ collection }: CollectionHeaderProps) {
             Home
           </LocalizedClientLink>
 
-           
           <span className="text-gray-400">/</span>
           <span className="text-black font-medium">{collection.title}</span>
         </nav>
@@ -27,7 +26,7 @@ function CollectionHeader({ collection }: CollectionHeaderProps) {
         {/* Category Header */}
         <div className="">
           <h1
-            className="text-4xl font-light  tracking-wide"
+            className="text-2xl font-medium  tracking-wide"
             data-testid="category-page-title"
           >
             {collection.title}

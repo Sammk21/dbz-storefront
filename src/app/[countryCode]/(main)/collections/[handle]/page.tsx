@@ -80,7 +80,7 @@ export default async function CollectionPage(props: Props) {
   }
 
   return (
-    <div className="mt-16">
+    <div className=" bg-white">
       <CollectionTemplate
         collection={collection}
         page={page}

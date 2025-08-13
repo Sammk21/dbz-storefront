@@ -191,11 +191,10 @@ export default function FullScreenMenu() {
 
   return (
     <>
-      <div className="  uppercase text-xs flex justify-center items-center"></div>
       <div
         ref={menuToggleRef}
         onClick={handleMenuToggle}
-        className="absolute top-[50px] left-[50px] uppercase closed hover:bg-slate-600 "
+        className="absolute top-1/2 -translate-y-1/2 left-[50px] uppercase closed hover:bg-slate-600 "
       >
         <svg
           className=" pointer-events-none"
@@ -226,7 +225,7 @@ export default function FullScreenMenu() {
       <div className="menu" ref={menuRef}>
         <button
           ref={menuToggleCloseRef}
-          className="absolute top-[50px] left-[50px] z-10 closed"
+          className="absolute top-[50px] bg-blur backdrop-blur-md left-[50px] z-10 closed"
           onClick={handleMenuToggle}
         >
           <svg

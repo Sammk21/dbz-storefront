@@ -30,7 +30,7 @@ export default async function Home(props: {
 
   return (
     <>
-      <div className="bg-[#eeedeb]">
+      <div className="bg-white">
         <Hero />
         <div className="py-12">
           <ul className="flex flex-col gap-x-6">

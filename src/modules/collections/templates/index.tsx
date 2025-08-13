@@ -24,7 +24,7 @@ export default function CollectionTemplate({
   const sort = sortBy || "created_at"
 
   return (
-    <div className="flex flex-col w-full small:items-start py-6 pt-12">
+    <div className="flex flex-col w-full sm:items-start text-xs   ">
       {/* Header Section - Server Component */}
       <CollectionHeader collection={collection} />
 

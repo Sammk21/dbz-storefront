@@ -134,3 +134,39 @@ export const listProductsWithSort = async ({
     queryParams,
   }
 }
+
+export const getProductByHandle = async function (
+  handle: string,
+  regionId: string
+) {
+  return sdk.client
+    .fetch<{ products: HttpTypes.StoreProduct[] }>(`/store/products`, {
+      query: {
+        handle,
+        region_id: regionId,
+        fields: "*variants.calculated_price,+variants.inventory_quantity",
+      },
+      next: { tags: ["products"] },
+    })
+    .then(({ products }) => products[0])
+}
+
+export const getProductsById = async function ({
+  ids,
+  regionId,
+}: {
+  ids: string[]
+  regionId: string
+}) {
+  return sdk.client
+    .fetch<{ products: HttpTypes.StoreProduct[] }>(`/store/products`, {
+      query: {
+        id: ids,
+        region_id: regionId,
+        fields: "*variants.calculated_price,+variants.inventory_quantity",
+      },
+      next: { tags: ["products"] },
+      cache: "force-cache",
+    })
+    .then(({ products }) => products)
+}

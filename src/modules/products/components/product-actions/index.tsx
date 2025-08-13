@@ -94,7 +94,6 @@ export default function ProductActions({
     return false
   }, [selectedVariant])
 
-  console.log(inStock, selectedVariant)
 
   const actionsRef = useRef<HTMLDivElement>(null)
 
@@ -124,16 +123,16 @@ export default function ProductActions({
               {(product.options || []).map((option) => {
                 return (
                   <div key={option.id}>
-                      <OptionSelect
-                        variants={product.variants ?? []}
-                        option={option}
-                        current={options[option.id]}
-                        updateOption={setOptionValue}
-                        title={option.title ?? ""}
-                        data-testid="product-options"
-                        disabled={!!disabled || isAdding}
-                        options={options}
-                      />
+                    <OptionSelect
+                      variants={product.variants ?? []}
+                      option={option}
+                      current={options[option.id]}
+                      updateOption={setOptionValue}
+                      title={option.title ?? ""}
+                      data-testid="product-options"
+                      disabled={!!disabled || isAdding}
+                      options={options}
+                    />
                   </div>
                 )
               })}
@@ -154,7 +153,7 @@ export default function ProductActions({
             !isValidVariant
           }
           variant="primary"
-          className="w-full h-10"
+          className="w-full h-10 bg-black rounded-none shadow-none"
           isLoading={isAdding}
           data-testid="add-product-button"
         >

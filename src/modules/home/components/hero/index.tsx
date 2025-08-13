@@ -2,8 +2,9 @@
 import { motion } from "framer-motion"
 import { Pacifico } from "next/font/google"
 import { cn } from "@lib/util/cn"
-import { Button } from "@medusajs/ui"
+
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
+import EpicButton from "@modules/button"
 
 const pacifico = Pacifico({
   subsets: ["latin"],
@@ -26,9 +27,9 @@ const fadeUpVariants = {
 
 const Hero = () => {
   return (
-    <div className="textglobal">
-      <div className="hero overflow-hidden h-full w-full relative text-white">
-        <div className="relative w-full h-[calc(100vh)]">
+    <div className="textglobal ">
+      <div className="hero overflow-hidden h-full w-full  text-white">
+        <div className="relative w-full h-[280px] md:h-[calc(90vh)]">
           {/* Background Video */}
           <video
             autoPlay
@@ -41,10 +42,6 @@ const Hero = () => {
             Your browser does not support the video tag.
           </video>
 
-          {/* Optional color overlay box */}
-          {/* <div className="absolute box z-10 top-0 bg-[#eeedeb]/20 left-0 bottom-0 right-0 w-full h-full"></div> */}
-
-          {/* You can add text or other elements here */}
           <motion.div
             initial="hidden"
             animate="visible"
@@ -54,13 +51,16 @@ const Hero = () => {
           >
             <h1
               className={cn(
-                "text-5xl md:text-7xl text-black text-center humane"
+                "  absolute text-[1.2rem] lg:text-[1.5rem] bottom-14 right-2  text-white drop-shadow-md text-center font-semibold"
               )}
             >
               COLLECTION: 001
             </h1>
-            <LocalizedClientLink href="/collections/001">
-              <Button>Shop Now</Button>
+            <LocalizedClientLink
+              className="absolute text-xl bottom-2 right-2  rounded-none shadow-none"
+              href="/collections/001"
+            >
+              <EpicButton>Shop Now</EpicButton>
             </LocalizedClientLink>
           </motion.div>
         </div>

@@ -5,7 +5,7 @@ export default async function CartButton() {
   const cart = await retrieveCart().catch(() => null)
 
   return (
-    <div className="top-[45px] absolute right-[50px]">
+    <div className="absolute top-1/2 -translate-y-1/2  right-[50px]">
       <CartDropdown cart={cart} />
     </div>
   )

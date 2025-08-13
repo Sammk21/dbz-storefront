@@ -18,7 +18,7 @@ export const Slider = ({
   region: HttpTypes.StoreRegion
 }) => {
   return (
-    <div className="relative grid w-full grid-cols-2 sm:grid-cols-3 md:grid-cols-4 ">
+    <div className="relative grid w-full grid-cols-2 sm:grid-cols-3 gap-1 md:grid-cols-4 ">
       {products &&
         products.map((product, i) => (
           <div className="" key={i}>
@@ -28,13 +28,13 @@ export const Slider = ({
             >
               <Thumbnail
                 size="small"
-                className="pointer-events-none group-hover:scale-110"
+                className="pointer-events-none  "
                 thumbnail={product?.thumbnail}
               />
               <div
-                className={`flex text-xs lg:text-sm  border-stone-400  mt-4 py-2 flex-col px-4 ${source_code.className}`}
+                className={`text-xs flex justify-between items-center   border-stone-400  mt-2 py-2 px-1  ${source_code.className}`}
               >
-                <p className="text-ui-fg-subtle capitalize">{product.title}</p>
+                <p className="font-semibold capitalize">{product.title}</p>
 
                 <ProductPriceListing product={product} />
               </div>

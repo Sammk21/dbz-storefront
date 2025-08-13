@@ -16,14 +16,15 @@ interface HeaderProps {
 export default function Nav({ className = "" }: HeaderProps) {
   return (
     <>
-      <header className="fixed top-0 inset-x-0 z-50 group bg-[#eeedeb]">
-        <div className="flex justify-between relative ">
+      <header className="fixed top-0 inset-x-0  z-50 group h-16  text-white mix-blend-difference ">
+        <div className="flex justify-between h-full  ">
           <FullScreenMenu />
           <Logo />
+
           <Suspense
             fallback={
               <LocalizedClientLink
-                className="text-white hover:text-white flex gap-2 absolute top-[50px] right-[50px]"
+                className="text-white hover:text-white flex gap-2 absolute top-1/2 -translate-y-1/2  right-[50px]"
                 href="/cart"
                 dataTestId="nav-cart-link"
               >

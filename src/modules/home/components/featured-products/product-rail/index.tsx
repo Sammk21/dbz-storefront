@@ -28,27 +28,27 @@ export default async function ProductRail({
   }
 
   return (
-    <div className="sm:content-container px-1  ">
+    <div className="sm:content-container px-1 text-black  ">
       <div className="sm:flex-row justify-between flex flex-col  place-content-center  mb-4">
         <div className="h-full w-full">
-          <h3
-            className={` textglobal text-2xl font-semibold leading-none flex  items-baseline ${source_code.className}`}
-          >
-            Collection: {collection.title}
-          </h3>
-        </div>
-        <div className="textglobal mt-3  w-full flex items-center text-xs sm:text-sm ">
-          These baggy pants aren&apos;t just about style; they&apos;re about
-          feeling like you&apos;re floating through space while still looking at
-          Earth. Each pair is like a cosmic hug for your legs, with that perfect
-          balance.
+          <h1 className="text-2xl font-semibold tracking-tight">
+            {collection.title}{" "}
+            <span className="text-gray-500 text-base align-top">
+              {collection.products?.length}
+            </span>
+          </h1>
+          <p className="mt-2 text-xs  leading-relaxed max-w-4xl">
+            The 247 collection is created with performance and versatility in
+            mind, designed to deliver on both function and style no matter the
+            setting. The range includes performance tops, shorts, outerwear,
+            hoodies, pants and accessories.
+          </p>
         </div>
       </div>
-      <div className="sldier-container overflow-hidden pt-12">
+      <div className="sldier-container overflow-hidden pt-6">
         <div className="">
           <Slider products={pricedProducts} region={region} />
         </div>
-    
       </div>
     </div>
   )
