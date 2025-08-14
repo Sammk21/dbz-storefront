@@ -89,6 +89,30 @@ import ProductTabs from "../components/product-tabs"
 import ShippingInfo from "./shipping-info"
 import ProductGallery from "../components/image-gallery/ProductGallery"
 
+
+const productDescription = [
+  {
+    slug: "courdrouy-pant",
+    description:
+      "<p>Introducing the Corduroy Lounge Pants in Buttercream, a soft and versatile piece designed for effortless comfort. Cut from a fine-ribbed corduroy with a velvety hand feel, these pants feature an easy elastic waistband and a straight-leg silhouette for a laid-back fit. The neutral buttercream tone enhances its timeless appeal, while the rear patch pocket with embroidered branding adds a subtle signature detail.</p><ul><li>Buttercream Colourway</li><li>Straight-Leg Relaxed Fit</li><li>Fine-Rib Corduroy Fabric</li><li>Elasticated Waistband</li><li>Rear Patch Pocket with Embroidered Logo</li><li>Soft Velvety Texture</li></ul><p><strong>Composition:</strong> 98% Cotton, 2% Elastane Corduroy</p><p><strong>Model Measurements:</strong> Model is 177cm and 65kg wearing size M</p><p><strong>Product Care:</strong><br />Cold Gentle Machine Wash<br />Do Not Bleach<br />Line Dry in the Shade<br />Warm Iron if Needed</p><p>Product Style Code: CRD2307-BC</p>",
+  },
+  {
+    slug: "courdrouy-floral",
+    description:
+      "<p>Introducing the Corduroy Side-Panel Track Pants, a playful reimagining of the classic lounge silhouette. Crafted from soft cream-toned fine-rib corduroy, this pair is elevated with contrast floral side panels in a vibrant tapestry print. The elasticated drawstring waist ensures a personalised fit, while the straight-leg cut delivers an easy-going shape. A front patch logo completes the piece with a touch of retro sportswear spirit.</p><ul><li>Cream Corduroy with Multicolour Floral Side Panels</li><li>Straight-Leg Relaxed Fit</li><li>Elasticated Drawstring Waist</li><li>Fine-Rib Corduroy Base</li><li>Patch Logo on Hip</li><li>Soft Velvety Texture</li><li>Statement Contrast Detailing</li></ul><p><strong>Composition:</strong> 98% Cotton, 2% Elastane Corduroy with Polyester Side Panels</p><p><strong>Model Measurements:</strong> Model is 178cm and 68kg wearing size M</p><p><strong>Product Care:</strong><br />Cold Gentle Machine Wash<br />Do Not Bleach<br />Line Dry in the Shade<br />Cool Iron on Reverse – Avoid Ironing Side Panels</p><p>Due to the patterned side panels, each piece will feature unique print placement.</p><p>Product Style Code: CRD2404-FSP</p>",
+  },
+  {
+    slug: "dbz-ruffle-rose",
+    description:
+      "<p>Introducing the Corduroy Side-Panel Track Pants, a playful reimagining of the classic lounge silhouette. Crafted from soft cream-toned fine-rib corduroy, this pair is elevated with contrast floral side panels in a vibrant tapestry print. The elasticated drawstring waist ensures a personalised fit, while the straight-leg cut delivers an easy-going shape. A front patch logo completes the piece with a touch of retro sportswear spirit.</p><ul><li>Cream Corduroy with Multicolour Floral Side Panels</li><li>Straight-Leg Relaxed Fit</li><li>Elasticated Drawstring Waist</li><li>Fine-Rib Corduroy Base</li><li>Patch Logo on Hip</li><li>Soft Velvety Texture</li><li>Statement Contrast Detailing</li></ul><p><strong>Composition:</strong> 98% Cotton, 2% Elastane Corduroy with Polyester Side Panels</p><p><strong>Model Measurements:</strong> Model is 178cm and 68kg wearing size M</p><p><strong>Product Care:</strong><br />Cold Gentle Machine Wash<br />Do Not Bleach<br />Line Dry in the Shade<br />Cool Iron on Reverse – Avoid Ironing Side Panels</p><p>Due to the patterned side panels, each piece will feature unique print placement.</p><p>Product Style Code: CRD2404-FSP</p>",
+  },
+  {
+    slug: "shorts",
+    description:
+      "<p>Introducing the Wide-Leg Vintage Wash Denim, a timeless piece inspired by classic workwear silhouettes. Crafted from durable cotton denim with a hand-finished faded wash, this style offers both rugged charm and all-day comfort. The relaxed, wide-leg fit allows for unrestricted movement, while the mid-rise waistband provides a secure yet easy feel. Subtle whiskering and natural fading create a worn-in effect, making each pair unique in character.</p><ul><li>Indigo Vintage Wash</li><li>Wide-Leg Relaxed Fit</li><li>Mid-Rise Waistband</li><li>Subtle Whiskering and Fading</li><li>Classic Five-Pocket Construction</li><li>Contrast Stitching</li><li>Unique Hand-Finished Wash – Each Pair Varies</li></ul><p><strong>Composition:</strong> 100% Cotton Denim</p><p><strong>Model Measurements:</strong> Model is 185cm and 72kg wearing size 32</p><p><strong>Product Care:</strong><br />Machine Wash Cold<br />Wash Inside Out<br />Line Dry<br />Cool Iron on Reverse<br />Avoid Bleach</p><p>Due to the artisanal washing technique, each pair will display distinct fading patterns, ensuring no two are the same.</p><p>Product Style Code: DNM2401-VW</p>",
+  },
+]
+
 type ProductTemplateProps = {
   product: HttpTypes.StoreProduct
   // materials: {
@@ -150,7 +174,10 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
                 // materials={materials}
                 region={region}
               />
-              <ProductTabs product={product} />
+              <ProductTabs
+                productDescription={productDescription}
+                product={product}
+              />
             </div>
             {!hasImages && <div className="flex-1" />}
           </div>
