@@ -1,139 +1,7 @@
-// // "use client"
-// // import { HttpTypes } from "@medusajs/types"
-// // import Image from "next/image"
-// // import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide"
-// // import "@splidejs/splide/css/core"
-
-// // type ImageGalleryProps = {
-// //   images: HttpTypes.StoreProductImage[]
-// // }
-
-// // const splideOptions = {
-// //   gap: "1rem",
-// //   pagination: false,
-// //   arrows: true,
-// //   perPage: 1,
-// //   perMove: 1,
-// //   padding: { left: 20, right: 20 },
-// //   breakpoints: {
-// //     600: {
-// //       perPage: 1,
-// //       gap: "0.5rem",
-// //     },
-// //   },
-// // }
-
-// // const ImageGallery = ({ images }: ImageGalleryProps) => {
-// //   return (
-// //     <div className="w-full">
-// //       <div className="flex flex-col gap-y-4 ">
-// //         {images.map((image, index) => (
-// //           <div
-// //             key={image.id}
-// //             className="relative h-screen w-full   shadow-none ease-in-out duration-150 flex rounded-none   bg-[#f7f7f7]  aspect-[187/251] lg:aspect-[3/4]"
-// //             id={image.id}
-// //           >
-// //             {!!image.url && (
-// //               <Image
-// //                 src={image.url}
-// //                 alt={`Product image ${index + 1}`}
-// //                 priority={index <= 2}
-// //                 fill
-// //                 style={{
-// //                   objectFit: "contain",
-// //                   objectPosition: "center",
-// //                 }}
-// //               />
-// //             )}
-// //           </div>
-// //         ))}
-// //       </div>
-// //     </div>
-// //   )
-// // }
-
-// // export default ImageGallery
-// "use client"
-
-// import { useCallback, useEffect, useState } from "react"
-// import Image from "next/image"
-
-// import useEmblaCarousel from "embla-carousel-react"
-
-// type ImageCarouselProps = {
-//   images: { id: string; url: string }[]
-//   openDialog: (index: number | null) => void
-// }
-
-// const ImageCarousel = ({ images, openDialog }: ImageCarouselProps) => {
-//   const [currentIndex, setCurrentIndex] = useState(0)
-//   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true })
-
-//   const onSelect = useCallback(() => {
-//     if (!emblaApi) return
-//     setCurrentIndex(emblaApi.selectedScrollSnap())
-//   }, [emblaApi])
-
-//   useEffect(() => {
-//     if (!emblaApi) return
-
-//     onSelect()
-//     emblaApi.on("select", onSelect)
-//     emblaApi.on("reInit", onSelect)
-
-//     return () => {
-//       emblaApi.off("select", onSelect)
-//       emblaApi.off("reInit", onSelect)
-//     }
-//   }, [emblaApi, onSelect])
-
-//   const slideWidth = 100 / images.length
-//   const isOnlyOneImage = images.length === 1
-
-//   console.log(images)
-
-//   return (
-//     <>
-//       <div className="overflow-hidden " ref={isOnlyOneImage ? null : emblaRef}>
-//         <div className="flex">
-//           {images.map((image, index) => (
-//             <div
-//               className="relative aspect-[29/34] max-h-[400px] w-full shrink-0"
-//               key={image.id}
-//               style={{ backgroundColor: "#F7F7F7" }}
-//             >
-//               <Image
-//                 onClick={() => openDialog(index)}
-//                 src={image.url}
-//                 alt={`Product image ${index + 1}`}
-//                 fill
-//                 priority={index <= 2}
-//                 className="object-contain"
-//                 sizes="(max-width: 768px) 100vw, (max-width: 992px) 780px"
-//               />
-//             </div>
-//           ))}
-//         </div>
-//       </div>
-
-//       {!isOnlyOneImage && (
-//         <div className="absolute bottom-3 left-3 right-3 h-1 bg-primary/30 medium:hidden">
-//           <div
-//             className="absolute h-full bg-primary transition-all duration-200 ease-out"
-//             style={{
-//               width: `${slideWidth}%`,
-//               left: `${currentIndex * slideWidth}%`,
-//             }}
-//           />
-//         </div>
-//       )}
-//     </>
-//   )
-// }
-
-// export default ImageCarousel
-
+"use client"
 import { ProductPageGallery } from "components/ProductPageGallery"
+import { ImageLightbox } from "components/ImageLightbox"
+import { useLightbox } from "hooks/useLightbox"
 import { HttpTypes } from "@medusajs/types"
 import Image from "next/image"
 
@@ -144,30 +12,90 @@ type ImageGalleryProps = {
 
 const ImageGallery = ({ images, className }: ImageGalleryProps) => {
   const filteredImages = images.filter((image) => Boolean(image.url))
+  const {
+    isOpen,
+    currentIndex,
+    openLightbox,
+    closeLightbox,
+    goToPrevious,
+    goToNext,
+    goToIndex,
+  } = useLightbox()
 
   if (!filteredImages.length) {
     return null
   }
 
+  // Transform images for lightbox
+  const lightboxImages = filteredImages.map((image, index) => ({
+    id: image.id,
+    url: image.url,
+    alt: `Product image ${index + 1}`,
+  }))
+
+  const handleNext = () => goToNext(lightboxImages.length)
+
   return (
-    <ProductPageGallery className={className}>
-      {filteredImages.map((image, index) => (
-        <div
-          key={image.id}
-          className="relative aspect-[3/4] w-full overflow-hidden bg-[#f7f7f7]"
-        >
-          <Image
+    <>
+      <ProductPageGallery className={className}>
+        {filteredImages.map((image, index) => (
+          <div
             key={image.id}
-            src={image.url}
-            priority={index <= 2 ? true : false}
-            alt={`Product image ${index + 1}`}
-            fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 589px, (max-width: 1279px) 384px, 456px"
-            className="object-cover"
-          />
-        </div>
-      ))}
-    </ProductPageGallery>
+            className="relative w-full mx-auto bg-[#f7f7f7] cursor-pointer group transition-transform hover:scale-[1.02] rounded-lg overflow-hidden"
+            onClick={() => openLightbox(index)}
+          >
+            {/* Container that maintains aspect ratio but allows flexibility */}
+            <div className="relative w-full">
+              <Image
+                key={image.id}
+                src={image.url}
+                priority={index <= 2 ? true : false}
+                alt={`Product image ${index + 1}`}
+                width={400}
+                height={500}
+                className="w-full h-auto object-contain transition-transform group-hover:scale-105"
+                sizes="(max-width: 640px) 90vw, (max-width: 768px) 70vw, (max-width: 1024px) 45vw, (max-width: 1280px) 30vw, 400px"
+              />
+            </div>
+
+            {/* Hover overlay */}
+            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center">
+              <div className="w-12 h-12 bg-white/90 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <svg
+                  className="w-6 h-6 text-gray-800"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        ))}
+      </ProductPageGallery>
+
+      {/* Lightbox */}
+      <ImageLightbox
+        images={lightboxImages}
+        isOpen={isOpen}
+        currentIndex={currentIndex}
+        onClose={closeLightbox}
+        onPrevious={goToPrevious}
+        onNext={handleNext}
+        showControls={true}
+        showThumbnails={lightboxImages.length > 1}
+        enableKeyboard={true}
+        enableZoom={true}
+        enableRotation={false}
+        enableDownload={false}
+      />
+    </>
   )
 }
 

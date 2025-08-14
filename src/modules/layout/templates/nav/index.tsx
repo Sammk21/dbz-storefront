@@ -16,11 +16,9 @@ interface HeaderProps {
 export default function Nav({ className = "" }: HeaderProps) {
   return (
     <>
-      <header className="fixed top-0 inset-x-0  z-50 group h-16  text-white mix-blend-difference ">
+      <header className="fixed top-0 inset-x-0  z-30 group h-16   ">
         <div className="flex justify-between h-full  ">
           <FullScreenMenu />
-          <Logo />
-
           <Suspense
             fallback={
               <LocalizedClientLink

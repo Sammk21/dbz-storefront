@@ -87,7 +87,7 @@ export const ProductPageGallery: React.FC<
           <ChevronRight />
         </button>
       </div>
-      <div className="flex justify-center max-lg:w-full max-lg:absolute max-lg:bottom-4">
+      <div className="flex absolute bottom-8 left-2 justify-center max-lg:w-full max-lg:absolute max-lg:bottom-4">
         {scrollSnaps.map((_, index) => (
           <button
             key={index}

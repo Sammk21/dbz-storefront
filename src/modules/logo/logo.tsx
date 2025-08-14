@@ -8,7 +8,7 @@ gsap.registerPlugin(ScrollTrigger)
 const Logo = () => {
   return (
     <>
-      <div className="logo absolute left-1/2 z-10 top-1/2 -translate-y-1/2 -translate-x-1/2 ">
+      <div className="logo z-50 fixed mix-blend-difference left-1/2 top-[.90rem] text-white -translate-x-1/2 ">
         <Link href="/">
           <div className="flex justify-center items-center">
             {/* <div className="">

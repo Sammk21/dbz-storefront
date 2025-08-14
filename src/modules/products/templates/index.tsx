@@ -86,6 +86,8 @@ import SkeletonRelatedProducts from "@modules/skeletons/templates/skeleton-relat
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import { Layout, LayoutColumn } from "components/Layout"
 import ProductTabs from "../components/product-tabs"
+import ShippingInfo from "./shipping-info"
+import ProductGallery from "../components/image-gallery/ProductGallery"
 
 type ProductTemplateProps = {
   product: HttpTypes.StoreProduct
@@ -124,62 +126,31 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
 
   return (
     <div
-      className="  pb-28 md:pb-36 w-full bg-white "
+      className="  pb-28 md:pb-36 w-full bg-white h-auto"
       data-testid="product-container"
     >
-      <ImageGallery className="md:hidden" images={images} />
+      {/* <ImageGallery className="lg:hidden" images={images} /> */}
+      <ProductGallery className="lg:hidden" images={images} />
+
       <Layout className="p-0">
-        <LayoutColumn className="mb-28 md:mb-52 col-span-12 h-screen p-0">
+        <LayoutColumn className="mb-28 md:mb-52  col-span-12  p-0">
           <div className="md:grid grid-cols-2 gap-8 w-full ">
             {hasImages && (
               <div className=" flex  flex-col ">
-                <ImageGallery className="max-md:hidden" images={images} />
+                {/* <ImageGallery className="max-lg:hidden" images={images} /> */}
+                <ProductGallery className="max-lg:hidden" images={images} />
               </div>
             )}
             <div className="pt-16 md:pt-26 md:pr-16 px-4 ">
               <ProductInfo product={product} />
+
+              <ShippingInfo />
               <ProductActions
                 product={product}
                 // materials={materials}
                 region={region}
               />
               <ProductTabs product={product} />
-              <div className="[@media(max-width:1023px)]:pb-[20px] [@media(max-width:1023px)]:border-b border-[#D9D9D9] w-full">
-                <div className="product-usp-wrapper bg-[#F7F7F7] px-2 py-2">
-                  <div className="flex cursor-pointer flex-row items-center">
-                    <div className="w-[10px] flex items-center justify-center"></div>
-                  </div>
-
-                  <div className="flex flex-row items-center gap-2 select-none">
-                    <div className="flex flex-row items-center justify-center">
-                      <div className="w-[10px] flex items-center justify-center">
-                        <span
-                          js-flag-icon=""
-                          className="flex items-center w-[10px] h-[10px] rounded-full border-solid border-black border bg-center bg-cover flex-shrink-0"
-                        ></span>
-                      </div>
-
-                      <span className="ml-[10px] text-[10px] text-[#000000] font-medium uppercase">
-                        <div className="metafield-rich_text_field">
-                          <p>Free shipping over $300</p>
-                        </div>
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="flex flex-row items-center">
-                    <div className="w-[10px] inline flex items-center justify-center">
-                      <span
-                        id="stock-status-icon"
-                        className="more-info icon-inventory limited"
-                      ></span>
-                    </div>
-                    <span className="ml-[10px] text-[10px] text-[#000000] font-medium uppercase">
-                      <span id="stock-status">Limited stock</span>
-                    </span>
-                  </div>
-                </div>
-              </div>
             </div>
             {!hasImages && <div className="flex-1" />}
           </div>
@@ -279,7 +250,6 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
             )}
           </Layout>
         )}
-
       <Suspense fallback={<SkeletonRelatedProducts />}>
         <RelatedProducts product={product} countryCode={countryCode} />
       </Suspense>

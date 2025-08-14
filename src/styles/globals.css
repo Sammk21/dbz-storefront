@@ -942,3 +942,44 @@ https://flickity.metafizzy.co
    mix-blend-mode: difference;
   color: #fff;
 }
+
+/* Embla Gallery Styles */
+.embla {
+  overflow: hidden;
+  height: 100%;
+}
+
+.embla__container {
+  display: flex;
+  height: 100%;
+  touch-action: pan-y pinch-zoom;
+}
+
+.embla__slide {
+  transform: translate3d(0, 0, 0);
+  flex: 0 0 100%;
+  min-width: 0;
+  height: 100%;
+}
+
+/* Smooth transitions */
+.embla__slide img {
+  transition: transform 0.3s ease;
+}
+
+/* Navigation button states */
+button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+button:disabled:hover {
+  opacity: 0.3 !important;
+}
+
+/* Mobile touch improvements */
+@media (max-width: 1023px) {
+  .embla__container {
+    touch-action: pan-x pinch-zoom;
+  }
+}

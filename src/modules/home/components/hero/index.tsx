@@ -5,6 +5,7 @@ import { cn } from "@lib/util/cn"
 
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import EpicButton from "@modules/button"
+import Image from "next/image"
 
 const pacifico = Pacifico({
   subsets: ["latin"],
@@ -41,6 +42,12 @@ const Hero = () => {
             <source src="/video/Sequence 02_2.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
+          {/* <Image
+            alt="blue ocean tint baggy"
+            src="/images/DSCN8098-2.jpg"
+            fill
+            className=" object-center object-contain"
+          /> */}
 
           <motion.div
             initial="hidden"
