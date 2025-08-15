@@ -94,17 +94,17 @@ const productDescription = [
   {
     slug: "courdrouy-pant",
     description:
-      "<p>Introducing the Corduroy Lounge Pants in Buttercream, a soft and versatile piece designed for effortless comfort. Cut from a fine-ribbed corduroy with a velvety hand feel, these pants feature an easy elastic waistband and a straight-leg silhouette for a laid-back fit. The neutral buttercream tone enhances its timeless appeal, while the rear patch pocket with embroidered branding adds a subtle signature detail.</p><ul><li>Buttercream Colourway</li><li>Straight-Leg Relaxed Fit</li><li>Fine-Rib Corduroy Fabric</li><li>Elasticated Waistband</li><li>Rear Patch Pocket with Embroidered Logo</li><li>Soft Velvety Texture</li></ul><p><strong>Composition:</strong> 98% Cotton, 2% Elastane Corduroy</p><p><strong>Model Measurements:</strong> Model is 177cm and 65kg wearing size M</p><p><strong>Product Care:</strong><br />Cold Gentle Machine Wash<br />Do Not Bleach<br />Line Dry in the Shade<br />Warm Iron if Needed</p><p>Product Style Code: CRD2307-BC</p>",
+      "<p>Introducing the Corduroy Lounge Pants in Buttercream, a soft and versatile piece designed for effortless comfort. Cut from a fine-ribbed corduroy with a velvety hand feel, these pants feature an easy elastic waistband and a straight-leg silhouette for a laid-back fit. The neutral buttercream tone enhances its timeless appeal, while the rear patch pocket with embroidered branding adds a subtle signature detail.</p><ul><li>Buttercream Colourway</li><li>Straight-Leg Relaxed Fit</li><li>Fine-Rib Corduroy Fabric</li><li>Elasticated Waistband</li><li>Rear Patch Pocket with Embroidered Logo</li><li>Soft Velvety Texture</li></ul><p><strong>Composition:</strong> 100% Cotton Corduroy</p><p><strong>Model Measurements:</strong> Model is 188cm and 65kg wearing size M/32</p><p><strong>Product Care:</strong><br />Cold Gentle Machine Wash<br />Do Not Bleach<br />Line Dry in the Shade<br />Warm Iron if Needed</p><p>Product Style Code: CRD2307-BC</p>",
   },
   {
     slug: "courdrouy-floral",
     description:
-      "<p>Introducing the Corduroy Side-Panel Track Pants, a playful reimagining of the classic lounge silhouette. Crafted from soft cream-toned fine-rib corduroy, this pair is elevated with contrast floral side panels in a vibrant tapestry print. The elasticated drawstring waist ensures a personalised fit, while the straight-leg cut delivers an easy-going shape. A front patch logo completes the piece with a touch of retro sportswear spirit.</p><ul><li>Cream Corduroy with Multicolour Floral Side Panels</li><li>Straight-Leg Relaxed Fit</li><li>Elasticated Drawstring Waist</li><li>Fine-Rib Corduroy Base</li><li>Patch Logo on Hip</li><li>Soft Velvety Texture</li><li>Statement Contrast Detailing</li></ul><p><strong>Composition:</strong> 98% Cotton, 2% Elastane Corduroy with Polyester Side Panels</p><p><strong>Model Measurements:</strong> Model is 178cm and 68kg wearing size M</p><p><strong>Product Care:</strong><br />Cold Gentle Machine Wash<br />Do Not Bleach<br />Line Dry in the Shade<br />Cool Iron on Reverse – Avoid Ironing Side Panels</p><p>Due to the patterned side panels, each piece will feature unique print placement.</p><p>Product Style Code: CRD2404-FSP</p>",
+      "<p>Introducing the Corduroy Side-Panel Track Pants, a playful reimagining of the classic lounge silhouette. Crafted from soft cream-toned fine-rib corduroy, this pair is elevated with contrast floral side panels in a vibrant tapestry print. The elasticated drawstring waist ensures a personalised fit, while the straight-leg cut delivers an easy-going shape. A front patch logo completes the piece with a touch of retro sportswear spirit.</p><ul><li>Cream Corduroy with Multicolour Floral Side Panels</li><li>Straight-Leg Relaxed Fit</li><li>Elasticated Drawstring Waist</li><li>Fine-Rib Corduroy Base</li><li>Patch Logo on Hip</li><li>Soft Velvety Texture</li><li>Statement Contrast Detailing</li></ul><p><strong>Composition:</strong> 100% Cotton Corduroy with Polyester Side Panels</p><p><strong>Model Measurements:</strong> Model is 188cm and 65kg wearing size M/32</p><p><strong>Product Care:</strong><br />Cold Gentle Machine Wash<br />Do Not Bleach<br />Line Dry in the Shade<br />Cool Iron on Reverse – Avoid Ironing Side Panels</p><p>Due to the patterned side panels, each piece will feature unique print placement.</p><p>Product Style Code: CRD2404-FSP</p>",
   },
   {
     slug: "dbz-ruffle-rose",
     description:
-      "<p>Introducing the Corduroy Side-Panel Track Pants, a playful reimagining of the classic lounge silhouette. Crafted from soft cream-toned fine-rib corduroy, this pair is elevated with contrast floral side panels in a vibrant tapestry print. The elasticated drawstring waist ensures a personalised fit, while the straight-leg cut delivers an easy-going shape. A front patch logo completes the piece with a touch of retro sportswear spirit.</p><ul><li>Cream Corduroy with Multicolour Floral Side Panels</li><li>Straight-Leg Relaxed Fit</li><li>Elasticated Drawstring Waist</li><li>Fine-Rib Corduroy Base</li><li>Patch Logo on Hip</li><li>Soft Velvety Texture</li><li>Statement Contrast Detailing</li></ul><p><strong>Composition:</strong> 98% Cotton, 2% Elastane Corduroy with Polyester Side Panels</p><p><strong>Model Measurements:</strong> Model is 178cm and 68kg wearing size M</p><p><strong>Product Care:</strong><br />Cold Gentle Machine Wash<br />Do Not Bleach<br />Line Dry in the Shade<br />Cool Iron on Reverse – Avoid Ironing Side Panels</p><p>Due to the patterned side panels, each piece will feature unique print placement.</p><p>Product Style Code: CRD2404-FSP</p>",
+      "<p>Introducing the Corduroy Side-Panel Track Pants, a playful reimagining of the classic lounge silhouette. Crafted from soft cream-toned fine-rib corduroy, this pair is elevated with contrast floral side panels in a vibrant tapestry print. The elasticated drawstring waist ensures a personalised fit, while the straight-leg cut delivers an easy-going shape. A front patch logo completes the piece with a touch of retro sportswear spirit.</p><ul><li>Cream Corduroy with Multicolour Floral Side Panels</li><li>Straight-Leg Relaxed Fit</li><li>Elasticated Drawstring Waist</li><li>Fine-Rib Corduroy Base</li><li>Patch Logo on Hip</li><li>Soft Velvety Texture</li><li>Statement Contrast Detailing</li></ul><p><strong>Composition:</strong> 100% Cotton Corduroy with Polyester Side Panels</p><p><strong>Model Measurements:</strong> Model is 188cm and 65kg wearing size M/32</p><p><strong>Product Care:</strong><br />Cold Gentle Machine Wash<br />Do Not Bleach<br />Line Dry in the Shade<br />Cool Iron on Reverse – Avoid Ironing Side Panels</p><p>Due to the patterned side panels, each piece will feature unique print placement.</p><p>Product Style Code: CRD2404-FSP</p>",
   },
   {
     slug: "shorts",
@@ -115,15 +115,7 @@ const productDescription = [
 
 type ProductTemplateProps = {
   product: HttpTypes.StoreProduct
-  // materials: {
-  //   id: string
-  //   name: string
-  //   colors: {
-  //     id: string
-  //     name: string
-  //     hex_code: string
-  //   }[]
-  // }[]
+
   region: HttpTypes.StoreRegion
   countryCode: string
 }

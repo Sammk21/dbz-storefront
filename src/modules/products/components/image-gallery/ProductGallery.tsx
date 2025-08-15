@@ -23,22 +23,12 @@ const ProductGallery = ({ images, className }: ProductGalleryProps) => {
   const [canScrollPrev, setCanScrollPrev] = useState(false)
   const [canScrollNext, setCanScrollNext] = useState(false)
   const [isFullscreen, setIsFullscreen] = useState(false)
+  const [scrollHidden, setScrollHidden] = useState(false)
 
   // Memoize filtered images for performance
   const filteredImages = useMemo(
     () => images.filter((image) => Boolean(image.url)),
     [images]
-  )
-
-  // Memoize lightbox images for performance
-  const lightboxImages = useMemo(
-    () =>
-      filteredImages.map((image, index) => ({
-        id: image.id,
-        url: image.url,
-        alt: `Product image ${index + 1}`,
-      })),
-    [filteredImages]
   )
 
   const scrollPrev = useCallback(() => {
@@ -47,10 +37,6 @@ const ProductGallery = ({ images, className }: ProductGalleryProps) => {
 
   const scrollNext = useCallback(() => {
     swiperRef.current?.slideNext()
-  }, [])
-
-  const scrollTo = useCallback((index: number) => {
-    swiperRef.current?.slideTo(index)
   }, [])
 
   const updateNavigation = useCallback(() => {
@@ -66,7 +52,15 @@ const ProductGallery = ({ images, className }: ProductGalleryProps) => {
   }, [])
 
   const toggleFullscreen = useCallback(() => {
-    setIsFullscreen((prev) => !prev)
+    setIsFullscreen((prev) => {
+      const goingFullscreen = !prev
+
+      // Set body overflow based on the *new* fullscreen state
+      document.body.style.overflow = goingFullscreen ? "hidden" : ""
+      setScrollHidden(goingFullscreen)
+
+      return goingFullscreen
+    })
   }, [])
 
   if (!filteredImages.length) {
