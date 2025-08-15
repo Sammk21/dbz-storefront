@@ -86,10 +86,6 @@ export const RazorpayPaymentButton = ({
         JSON.stringify(`authorized:` + authorizedCart)
       })
     })
-    // razorpay.on("payment.captured", function (response: any) {
-
-    // }
-    // )
   }, [
     Razorpay,
     cart.billing_address?.first_name,

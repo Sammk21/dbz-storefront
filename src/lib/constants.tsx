@@ -1,52 +1,58 @@
 import React from "react"
 import { Cash, CreditCard } from "@medusajs/icons"
+import PaymentInfo from "@modules/checkout/components/payment-info"
 
-import Ideal from "@modules/common/icons/ideal"
-import Bancontact from "@modules/common/icons/bancontact"
-import PayPal from "@modules/common/icons/paypal"
-
-/* Map of payment provider_id to their title and icon. Add in any payment providers you want to use. */
+/* Map of payment provider_id to their title and icon. Only includes Razorpay and Manual payments. */
 export const paymentInfoMap: Record<
   string,
   { title: string; icon: React.JSX.Element }
 > = {
-  pp_stripe_stripe: {
-    title: "Credit card",
-    icon: <CreditCard />,
-  },
-  "pp_stripe-ideal_stripe": {
-    title: "iDeal",
-    icon: <Ideal />,
-  },
-  "pp_stripe-bancontact_stripe": {
-    title: "Bancontact",
-    icon: <Bancontact />,
-  },
-  pp_paypal_paypal: {
-    title: "PayPal",
-    icon: <PayPal />,
-  },
   pp_system_default: {
     title: "Cash on delivery",
     icon: <Cash />,
   },
   pp_razorpay_razorpay: {
-    title: "Razorpay",
-    icon: <CreditCard />,
+    title: "Pay with UPI/Card/Wallet",
+    icon: (
+      <PaymentInfo
+        title=""
+        methods={[
+          {
+            name: "UPI",
+            icon: "/svgs/upi.svg",
+            fallback: "UP",
+          },
+          {
+            name: "Card",
+            icon: "/svgs/visa.svg",
+            fallback: "CD",
+          },
+          {
+            name: "Wallet",
+            icon: "/svgs/paytm.svg",
+            fallback: "PYTM",
+          },
+          {
+            name: "Paytm",
+            icon: "/svgs/RuPay.svg",
+            fallback: "RP",
+          },
+          {
+            name: "Amazon",
+            icon: "/svgs/amazonpay.svg",
+            fallback: "CD",
+          },
+        ]}
+        showRazorpayLogo={true}
+      />
+    ),
   },
-  // Add more payment providers here
 }
 
-// This only checks if it is native stripe for card payments, it ignores the other stripe-based providers
-export const isStripe = (providerId?: string) => {
-  return providerId?.startsWith("pp_stripe_")
-}
 export const isRazorpay = (providerId?: string) => {
   return providerId?.startsWith("pp_razorpay")
 }
-export const isPaypal = (providerId?: string) => {
-  return providerId?.startsWith("pp_paypal")
-}
+
 export const isManual = (providerId?: string) => {
   return providerId?.startsWith("pp_system_default")
 }
