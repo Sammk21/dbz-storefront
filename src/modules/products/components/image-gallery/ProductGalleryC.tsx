@@ -1,36 +1,52 @@
 "use client"
-import React, { useCallback, useState, useMemo, useRef } from "react"
-import { Swiper, SwiperSlide } from "swiper/react"
-import { Navigation, Keyboard } from "swiper/modules"
-import type { Swiper as SwiperType } from "swiper"
+import React, { useCallback, useEffect, useState, useMemo } from "react"
+import useEmblaCarousel from "embla-carousel-react"
 import { ImageLightbox } from "components/ImageLightbox"
 import { useLightbox } from "hooks/useLightbox"
 import { HttpTypes } from "@medusajs/types"
 import Image from "next/image"
 
-// Import Swiper styles
-import "swiper/css"
-import "swiper/css/navigation"
-
-type ProductGalleryProps = {
+type ProductGalleryOptimizedProps = {
   images: HttpTypes.StoreProductImage[]
   className?: string
 }
 
-const ProductGallery = ({ images, className }: ProductGalleryProps) => {
-  const swiperRef = useRef<SwiperType>()
-  const [selectedIndex, setSelectedIndex] = useState(0)
-  const [canScrollPrev, setCanScrollPrev] = useState(false)
-  const [canScrollNext, setCanScrollNext] = useState(false)
-  const [isFullscreen, setIsFullscreen] = useState(false)
-
-  // Memoize filtered images for performance
+// Ultra-optimized version with minimal re-renders and maximum performance
+const ProductGallery = ({
+  images,
+  className,
+}: ProductGalleryOptimizedProps) => {
+  // Memoize filtered images to prevent unnecessary recalculations
   const filteredImages = useMemo(
     () => images.filter((image) => Boolean(image.url)),
     [images]
   )
 
-  // Memoize lightbox images for performance
+  // Optimized Embla configuration - using native options only
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: false,
+    align: "start",
+    dragFree: false,
+    axis: "x",
+    // Most optimized approach: Use native browser behavior with minimal interference
+    watchDrag: false, // Disable custom drag watching - let CSS handle it
+  })
+
+  const [selectedIndex, setSelectedIndex] = useState(0)
+  const [canScrollPrev, setCanScrollPrev] = useState(false)
+  const [canScrollNext, setCanScrollNext] = useState(false)
+  const [isFullscreen, setIsFullscreen] = useState(false)
+
+  const {
+    isOpen,
+    currentIndex,
+    openLightbox,
+    closeLightbox,
+    goToPrevious,
+    goToNext,
+  } = useLightbox()
+
+  // Memoize lightbox images to prevent recreation on every render
   const lightboxImages = useMemo(
     () =>
       filteredImages.map((image, index) => ({
@@ -41,33 +57,61 @@ const ProductGallery = ({ images, className }: ProductGalleryProps) => {
     [filteredImages]
   )
 
+  // Memoized callbacks to prevent recreation
   const scrollPrev = useCallback(() => {
-    swiperRef.current?.slidePrev()
-  }, [])
+    emblaApi?.scrollPrev()
+  }, [emblaApi])
 
   const scrollNext = useCallback(() => {
-    swiperRef.current?.slideNext()
-  }, [])
+    emblaApi?.scrollNext()
+  }, [emblaApi])
 
-  const scrollTo = useCallback((index: number) => {
-    swiperRef.current?.slideTo(index)
-  }, [])
+  const scrollTo = useCallback(
+    (index: number) => {
+      emblaApi?.scrollTo(index)
+    },
+    [emblaApi]
+  )
 
-  const updateNavigation = useCallback(() => {
-    if (!swiperRef.current) return
-    setCanScrollPrev(!swiperRef.current.isBeginning)
-    setCanScrollNext(!swiperRef.current.isEnd)
-  }, [])
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return
+    setSelectedIndex(emblaApi.selectedScrollSnap())
+    setCanScrollPrev(emblaApi.canScrollPrev())
+    setCanScrollNext(emblaApi.canScrollNext())
+  }, [emblaApi])
 
-  const onSlideChange = useCallback((swiper: SwiperType) => {
-    setSelectedIndex(swiper.activeIndex)
-    setCanScrollPrev(!swiper.isBeginning)
-    setCanScrollNext(!swiper.isEnd)
-  }, [])
+  useEffect(() => {
+    if (!emblaApi) return
+    onSelect()
+    emblaApi.on("select", onSelect)
+    emblaApi.on("reInit", onSelect)
+
+    return () => {
+      emblaApi.off("select", onSelect)
+      emblaApi.off("reInit", onSelect)
+    }
+  }, [emblaApi, onSelect])
+
+  const handleLightboxNext = useCallback(
+    () => goToNext(lightboxImages.length),
+    [goToNext, lightboxImages.length]
+  )
 
   const toggleFullscreen = useCallback(() => {
     setIsFullscreen((prev) => !prev)
   }, [])
+
+  const handleSlideClick = useCallback(
+    (index: number) => {
+      if (isFullscreen) {
+        openLightbox(index)
+      } else {
+        toggleFullscreen()
+        setTimeout(() => scrollTo(index), 100)
+      }
+    },
+    [isFullscreen, openLightbox, toggleFullscreen, scrollTo]
+  )
 
   if (!filteredImages.length) {
     return null
@@ -86,50 +130,27 @@ const ProductGallery = ({ images, className }: ProductGalleryProps) => {
       `}
       >
         <div className="h-full">
-          <Swiper
-            modules={[Navigation, Keyboard]}
-            onSwiper={(swiper) => {
-              swiperRef.current = swiper
-              updateNavigation()
+          {/* Ultra-optimized: Let CSS do the heavy lifting for touch behavior */}
+          <div
+            className="embla h-full"
+            ref={emblaRef}
+            style={{
+              touchAction: "pan-y", // Allow vertical panning (scrolling) only
+              overscrollBehaviorX: "contain", // Prevent horizontal overscroll
             }}
-            onSlideChange={onSlideChange}
-            spaceBetween={0}
-            slidesPerView={1}
-            allowTouchMove={true}
-            touchRatio={1}
-            touchAngle={45}
-            threshold={5}
-            longSwipes={true}
-            longSwipesRatio={0.5}
-            longSwipesMs={300}
-            followFinger={true}
-            grabCursor={false}
-            preventClicks={false}
-            preventClicksPropagation={false}
-            slideToClickedSlide={false}
-            touchMoveStopPropagation={false}
-            touchStartPreventDefault={false}
-            touchReleaseOnEdges={false}
-            resistance={true}
-            resistanceRatio={0.85}
-            speed={300}
-            keyboard={{
-              enabled: true,
-              onlyInViewport: true,
-            }}
-            direction="horizontal"
-            touchEventsTarget="container"
-            simulateTouch={true}
-            className="h-full [&_.swiper-wrapper]:h-full [&_.swiper-slide]:h-full"
-            style={
-              {
-                "--swiper-navigation-size": "0px",
-              } as React.CSSProperties
-            }
           >
-            {filteredImages.map((image, index) => (
-              <SwiperSlide key={image.id}>
-                <div className="w-full h-full cursor-pointer">
+            <div className="embla__container h-full flex">
+              {filteredImages.map((image, index) => (
+                <div
+                  key={image.id}
+                  className="embla__slide flex-none w-full h-full cursor-pointer"
+                  onClick={() => handleSlideClick(index)}
+                  style={{
+                    touchAction: "pan-y", // Allow vertical scrolling on slides
+                    userSelect: "none", // Prevent text selection
+                    WebkitTapHighlightColor: "transparent", // Remove tap highlight on iOS
+                  }}
+                >
                   <div className="relative w-full h-full bg-[#f7f7f7]">
                     <Image
                       src={image.url}
@@ -141,11 +162,12 @@ const ProductGallery = ({ images, className }: ProductGalleryProps) => {
                       style={{
                         maxWidth: "min(100%, var(--image-width, 100%))",
                         maxHeight: "min(100%, var(--image-height, 100%))",
+                        pointerEvents: "none", // Prevent image from interfering with touch
                       }}
                     />
 
                     {/* Hover overlay */}
-                    <div className="absolute inset-0 bg-black/0 hover:bg-black/10 transition-colors duration-300 flex items-center justify-center">
+                    <div className="absolute inset-0 bg-black/0 hover:bg-black/10 transition-colors duration-300 flex items-center justify-center pointer-events-none">
                       <div className="w-12 h-12 bg-white/90 rounded-full flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
                         <svg
                           className="w-6 h-6 text-gray-800"
@@ -164,9 +186,9 @@ const ProductGallery = ({ images, className }: ProductGalleryProps) => {
                     </div>
                   </div>
                 </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+              ))}
+            </div>
+          </div>
 
           {/* Desktop Navigation Arrows */}
           <button
@@ -263,6 +285,7 @@ const ProductGallery = ({ images, className }: ProductGalleryProps) => {
             {/* Desktop Controls */}
             <div className="hidden lg:flex items-center p-4 lg:pl-7 lg:pr-9 lg:py-6">
               <button
+                onClick={() => openLightbox(selectedIndex)}
                 aria-label="Open product gallery"
                 className="flex items-center justify-center"
               >
@@ -308,7 +331,11 @@ const ProductGallery = ({ images, className }: ProductGalleryProps) => {
 
           <div className="h-full overflow-y-auto">
             {filteredImages.map((image, index) => (
-              <div key={image.id} className="w-full cursor-pointer">
+              <div
+                key={image.id}
+                className="w-full cursor-pointer"
+                onClick={() => openLightbox(index)}
+              >
                 <div className="w-full bg-[#f7f7f7] flex items-center justify-center min-h-[400px]">
                   <div className="relative max-w-full">
                     <Image
@@ -333,7 +360,7 @@ const ProductGallery = ({ images, className }: ProductGalleryProps) => {
       )}
 
       {/* Lightbox */}
-      {/* <ImageLightbox
+      <ImageLightbox
         images={lightboxImages}
         isOpen={isOpen}
         currentIndex={currentIndex}
@@ -346,7 +373,7 @@ const ProductGallery = ({ images, className }: ProductGalleryProps) => {
         enableZoom={true}
         enableRotation={false}
         enableDownload={false}
-      /> */}
+      />
     </>
   )
 }

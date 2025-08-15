@@ -42,7 +42,7 @@
     "react-razorpay": "^3.0.1",
     "react-zoom-pan-pinch": "^3.7.0",
     "server-only": "^0.0.1",
-    "swiper": "^11.2.6",
+    "swiper": "^11.2.10",
     "tailwindcss-animate": "latest",
     "tailwindcss-radix": "^2.8.0",
     "webpack": "^5",
