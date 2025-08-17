@@ -13,39 +13,7 @@ export const paymentInfoMap: Record<
   },
   pp_razorpay_razorpay: {
     title: "Pay with UPI/Card/Wallet",
-    icon: (
-      <PaymentInfo
-        title=""
-        methods={[
-          {
-            name: "UPI",
-            icon: "/svgs/upi.svg",
-            fallback: "UP",
-          },
-          {
-            name: "Card",
-            icon: "/svgs/visa.svg",
-            fallback: "CD",
-          },
-          {
-            name: "Wallet",
-            icon: "/svgs/paytm.svg",
-            fallback: "PYTM",
-          },
-          {
-            name: "Paytm",
-            icon: "/svgs/RuPay.svg",
-            fallback: "RP",
-          },
-          {
-            name: "Amazon",
-            icon: "/svgs/amazonpay.svg",
-            fallback: "CD",
-          },
-        ]}
-        showRazorpayLogo={true}
-      />
-    ),
+    icon: <PaymentInfo title="" methods={[]} showRazorpayLogo={true} />,
   },
 }
 

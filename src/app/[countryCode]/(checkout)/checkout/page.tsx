@@ -31,7 +31,6 @@ export default async function Checkout() {
       <PaymentWrapper cart={cart}>
         <CheckoutForm cart={cart} customer={customer} />
       </PaymentWrapper>
-      
       {/* Order summary sidebar */}
       <CheckoutSummary cart={cart} />
     </div>

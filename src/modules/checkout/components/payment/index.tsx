@@ -134,6 +134,7 @@ const Payment = ({
           {!paidByGiftcard && availablePaymentMethods?.length && (
             <>
               <RadioGroup
+                className={"w-full"}
                 value={selectedPaymentMethod}
                 onChange={(value: string) => setPaymentMethod(value)}
               >
@@ -208,9 +209,7 @@ const Payment = ({
                       <CreditCard />
                     )}
                   </Container>
-                  <Text>
-                    Ready for payment
-                  </Text>
+                  <Text>Ready for payment</Text>
                 </div>
               </div>
             </div>
