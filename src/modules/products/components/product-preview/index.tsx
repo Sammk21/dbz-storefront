@@ -6,7 +6,6 @@ import LocalizedClientLink from "@modules/common/components/localized-client-lin
 import {Thumbnail} from "../thumbnail"
 import PreviewPrice from "./price"
 import CardAddToCart from "../card-add-to-cart"
-import { source_code } from "@modules/home/components/featured-products/slider"
 import ProductPriceListing from "../product-price-in-listing"
 
 export default async function ProductPreview({
@@ -37,7 +36,7 @@ export default async function ProductPreview({
           />
 
           <div
-            className={`text-xs flex justify-between items-center   border-stone-400  mt-2 py-2  px-1 ${source_code.className}`}
+            className={`text-xs flex justify-between items-center   border-stone-400  mt-2 py-2  px-1 `}
           >
             <p className="font-semibold capitalize">{product.title}</p>
 

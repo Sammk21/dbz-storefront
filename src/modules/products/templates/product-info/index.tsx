@@ -1,7 +1,6 @@
 import { HttpTypes } from "@medusajs/types"
 import { Heading, Text } from "@medusajs/ui"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
-import { source_code } from "@modules/home/components/featured-products/slider"
 import ProductPrice from "@modules/products/components/product-price"
 
 type ProductInfoProps = {
@@ -32,14 +31,14 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
         </div>
 
         <Text
-          className={`text-xs  whitespace-pre-line text-gray-600 ${source_code.className}`}
+          className={`text-xs  whitespace-pre-line text-gray-600 `}
           data-testid="product-description"
         >
           {product.description}
         </Text>
       </div>
       <Text
-        className={`text-xs mb-8 whitespace-pre-line uppercase text-gray-600 ${source_code.className}`}
+        className={`text-xs mb-8 whitespace-pre-line uppercase text-gray-600 `}
         data-testid="product-description"
       ></Text>
     </div>

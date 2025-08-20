@@ -44,10 +44,8 @@ const ShippingInfo = () => {
             <span className="ml-[10px] text-[10px] text-[#000000] font-medium uppercase">
               <div className="metafield-rich_text_field">
                 <p>
-                  Free shipping across india over{" "}
-                  <span className="font-semibold">
-                    <span>₹</span>998
-                  </span>
+                  Free shipping across india{" "}
+                  <span className="font-semibold"></span>
                 </p>
               </div>
             </span>

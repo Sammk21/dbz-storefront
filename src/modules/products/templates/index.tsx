@@ -173,7 +173,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
       {/* <ImageGallery className="lg:hidden" images={images} /> */}
       <ProductGallery className="lg:hidden" images={images} />
 
-      <Layout className="p-0">
+      <Layout className="p-0 ">
         <LayoutColumn className="mb-28 md:mb-52  col-span-12  p-0">
           <div className="md:grid grid-cols-2 gap-8 w-full ">
             {hasImages && (
@@ -182,19 +182,25 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
                 <ProductGallery className="max-lg:hidden" images={images} />
               </div>
             )}
-            <div className="pt-16 md:pt-26 md:pr-16 px-4 ">
-              <ProductInfo product={product} />
+            <div className="pt-16 relative md:pt-26 max-w-[472px] px-2 sm:px-0 h-full flex justify-center items-center mx-auto ">
+              <div className="h-auto w-full ">
+                <div className=" h-full w-full ">
+                  <ProductInfo product={product} />
 
-              <ShippingInfo />
-              <ProductActions
-                product={product}
-                // materials={materials}
-                region={region}
-              />
-              <ProductTabs
-                productDescription={productDescription}
-                product={product}
-              />
+                  <ProductActions
+                    product={product}
+                    // materials={materials}
+                    region={region}
+                  />
+                  <div className="mt-2">
+                    <ShippingInfo />
+                  </div>
+                </div>
+                <ProductTabs
+                  productDescription={productDescription}
+                  product={product}
+                />
+              </div>
             </div>
             {!hasImages && <div className="flex-1" />}
           </div>

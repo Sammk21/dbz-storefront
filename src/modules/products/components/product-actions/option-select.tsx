@@ -68,9 +68,9 @@ const OptionSelect: React.FC<OptionSelectProps> = ({
               onClick={() => updateOption(option.id, value)}
               key={value}
               className={clx(
-                " border text-small-regular h-10  p-2 flex-1 flex items-center justify-center gap-2",
+                " text-small-regular h-10 bg-[#f7f7f7] border border-[#f7f7f7]  p-2 flex-1 flex items-center justify-center ",
                 {
-                  "border-ui-border-interactive": value === current,
+                  "border-black ": value === current,
                   "hover:shadow-elevation-card-rest transition-shadow ease-in-out duration-150":
                     value !== current,
                   "opacity-50 cursor-not-allowed": isOutOfStock,
@@ -80,7 +80,7 @@ const OptionSelect: React.FC<OptionSelectProps> = ({
               data-testid="option-button"
             >
               {value}
-              {isOutOfStock && <span className="text-red-600 ml-2">❌</span>}
+              {isOutOfStock && <span className="text-red-600 ml-1">❌</span>}
             </button>
           )
         })}

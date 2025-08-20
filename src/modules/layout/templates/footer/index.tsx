@@ -3,7 +3,6 @@ import { listCollections } from "@lib/data/collections"
 import { Text, clx } from "@medusajs/ui"
 
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
-import { source_code } from "@modules/home/components/featured-products/slider"
 import MedusaCTA from "@modules/layout/components/medusa-cta"
 import { Source_Code_Pro } from "next/font/google"
 
@@ -14,9 +13,7 @@ export default async function Footer() {
   const productCategories = await listCategories()
 
   return (
-    <footer
-      className={`border-t border-ui-border-base w-full ${source_code.className}`}
-    >
+    <footer className={`border-t border-ui-border-base w-full `}>
       <div className="content-container flex flex-col w-full">
         <div className="flex flex-col h-full gap-y-6 xsmall:flex-row items-start justify-between py-16">
           <div className="h-full w-full flex flex-col justify-between">

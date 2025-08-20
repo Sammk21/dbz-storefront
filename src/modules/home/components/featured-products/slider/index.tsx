@@ -3,10 +3,7 @@ import LocalizedClientLink from "@modules/common/components/localized-client-lin
 import { Thumbnail } from "@modules/products/components/thumbnail"
 import { HttpTypes } from "@medusajs/types"
 import ProductPriceListing from "@modules/products/components/product-price-in-listing"
-import { Source_Code_Pro } from "next/font/google"
 import CardAddToCart from "@modules/products/components/card-add-to-cart"
-
-export const source_code = Source_Code_Pro({ subsets: ["latin"] })
 
 export const Slider = ({
   products,
@@ -32,14 +29,14 @@ export const Slider = ({
                 thumbnail={product?.thumbnail}
               />
               <div
-                className={`text-xs flex justify-between items-center   border-stone-400  mt-2 py-2 px-1  ${source_code.className}`}
+                className={`text-xs px-2 flex justify-between items-center   border-stone-400  mt-2 py-2 px-1  `}
               >
                 <p className="font-semibold capitalize">{product.title}</p>
 
                 <ProductPriceListing product={product} />
               </div>
             </LocalizedClientLink>
-            <div className="flex flex-col justify-center w-full small:sticky small:top-48 small:py-0 px-2 py-8 gap-y-12">
+            <div className="flex px-2 flex-col justify-center w-full small:sticky small:top-48 small:py-0  py-8 gap-y-12">
               <CardAddToCart
                 disabled={false}
                 product={product}

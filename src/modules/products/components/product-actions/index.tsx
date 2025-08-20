@@ -151,7 +151,7 @@ export default function ProductActions({
             !isValidVariant
           }
           variant="primary"
-          className="w-full h-10 bg-black rounded-none shadow-none"
+          className="w-full h-14 uppercase font-medium text-white text-xs bg-black rounded-none shadow-none"
           isLoading={isAdding}
           data-testid="add-product-button"
         >
