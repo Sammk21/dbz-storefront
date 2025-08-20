@@ -48,7 +48,7 @@ export const RazorpayPaymentButton = ({
       description: `Order number ${orderData.id}`,
       remember_customer: true,
 
-      image: "https://example.com/your_logo",
+      image: process.env.SHOP_LOGO,
       modal: {
         backdropclose: true,
         escape: true,
