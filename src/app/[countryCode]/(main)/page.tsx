@@ -5,6 +5,7 @@ import { listCollections } from "@lib/data/collections"
 import { getRegion } from "@lib/data/regions"
 import { InfiniteText } from "components/magicui/marquee"
 import Logo from "@modules/logo/logo"
+import { FreeShippingBanner } from "@modules/products/components/banner"
 
 export const metadata: Metadata = {
   title: "Divide By Zero ",
@@ -32,6 +33,7 @@ export default async function Home(props: {
     <>
       <div className="bg-white">
         <Hero />
+        <FreeShippingBanner />
         <div className="py-12">
           <ul className="flex flex-col gap-x-6">
             <FeaturedProducts collections={collections} region={region} />

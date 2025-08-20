@@ -51,7 +51,7 @@ const ProductTabs = ({ product, productDescription }: ProductTabsProps) => {
 
 const ProductInfoTab = ({ description }: { description: string }) => {
   return (
-    <div id="product_description" className="prose text-xs text-gray-900">
+    <div id="product_description" className="prose text-xs text-gray-900 ">
       {description ? (
         <div dangerouslySetInnerHTML={{ __html: description }} />
       ) : (

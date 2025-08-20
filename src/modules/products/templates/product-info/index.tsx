@@ -41,9 +41,7 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
       <Text
         className={`text-xs mb-8 whitespace-pre-line uppercase text-gray-600 ${source_code.className}`}
         data-testid="product-description"
-      >
-        Model is 188 wearing size M/32
-      </Text>
+      ></Text>
     </div>
   )
 }

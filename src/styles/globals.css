@@ -983,3 +983,12 @@ button:disabled:hover {
     touch-action: pan-x pinch-zoom;
   }
 }
+
+.animate-marquee {
+ display: inline-block;
+ animation: marquee 8s linear infinite;
+ }
+ @keyframes marquee {
+ 0% { transform: translateX(0); }
+ 100% { transform: translateX(-50%); }
+ }

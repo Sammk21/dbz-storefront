@@ -32,7 +32,7 @@ const Hero = () => {
       <div className="hero overflow-hidden h-full w-full  text-white">
         <div className="relative w-full h-[280px] md:h-[calc(90vh)]">
           {/* Background Video */}
-          <video
+          {/* <video
             autoPlay
             loop
             muted
@@ -41,13 +41,13 @@ const Hero = () => {
           >
             <source src="/video/Sequence 02_2.mp4" type="video/mp4" />
             Your browser does not support the video tag.
-          </video>
-          {/* <Image
+          </video> */}
+          <Image
             alt="blue ocean tint baggy"
-            src="/images/DSCN8098-2.jpg"
+            src="/images/gaama breeze.jpg"
             fill
-            className=" object-center object-contain"
-          /> */}
+            className=" object-center object-cover"
+          />
 
           <motion.div
             initial="hidden"
@@ -61,11 +61,11 @@ const Hero = () => {
                 "  absolute text-[1.2rem] lg:text-[1.5rem] bottom-14 right-2  text-white drop-shadow-md text-center font-semibold"
               )}
             >
-              COLLECTION: 001
+              COLLECTION: 002
             </h1>
             <LocalizedClientLink
               className="absolute text-xl bottom-2 right-2  rounded-none shadow-none"
-              href="/collections/001"
+              href="/collections/002"
             >
               <EpicButton>Shop Now</EpicButton>
             </LocalizedClientLink>

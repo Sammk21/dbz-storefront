@@ -31,6 +31,8 @@ const Payment = ({
     activeSession?.provider_id ?? ""
   )
 
+  console.log("avpme /payment", availablePaymentMethods)
+
   const searchParams = useSearchParams()
   const router = useRouter()
   const pathname = usePathname()
