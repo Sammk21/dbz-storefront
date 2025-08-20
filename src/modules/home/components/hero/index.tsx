@@ -44,7 +44,7 @@ const Hero = () => {
           </video> */}
           <Image
             alt="blue ocean tint baggy"
-            src="/images/gaama breeze.jpg"
+            src="/images/bg-3.jpg"
             fill
             className=" object-center object-cover"
           />
