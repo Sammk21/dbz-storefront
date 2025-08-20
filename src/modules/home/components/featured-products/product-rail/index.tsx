@@ -28,8 +28,8 @@ export default async function ProductRail({
   }
 
   return (
-    <div className="sm:content-container px-1 text-black  ">
-      <div className="sm:flex-row justify-between flex flex-col  place-content-center  mb-4">
+    <div className="sm:content-container px-1 text-black mt-12  ">
+      <div className="sm:flex-row justify-between flex flex-col  place-content-center  ">
         <div className="h-full w-full">
           <h1 className="text-2xl font-semibold tracking-tight">
             {collection.title}{" "}
@@ -37,12 +37,6 @@ export default async function ProductRail({
               {collection.products?.length}
             </span>
           </h1>
-          <p className="mt-2 text-xs  leading-relaxed max-w-4xl">
-            The 247 collection is created with performance and versatility in
-            mind, designed to deliver on both function and style no matter the
-            setting. The range includes performance tops, shorts, outerwear,
-            hoodies, pants and accessories.
-          </p>
         </div>
       </div>
       <div className="sldier-container overflow-hidden pt-6">
